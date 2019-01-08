@@ -20,7 +20,13 @@ class ApiController < ApplicationController
 
   def authenticate_token
     authenticate_with_http_token do |token, _options|
-      User.find_by(auth_token: token)
+      user = user = User.find_by(auth_token: token)
+      if user.present?
+        ActiveSupport::SecurityUtils
+          .secure_compare(::Digest::SHA256.hexdigest(token),
+                          ::Digest::SHA256.hexdigest(user.auth_token))
+        return user
+      end
     end
   end
 end
