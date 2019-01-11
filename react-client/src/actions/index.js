@@ -1,0 +1,4 @@
+export const SEARCH_CLIENTS = 'SEARCH_CLIENTS';
+export const LOGIN_USER = 'LOGIN_USER';
+export const UPDATE_USERNAME = 'UPDATE_USERNAME';
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';

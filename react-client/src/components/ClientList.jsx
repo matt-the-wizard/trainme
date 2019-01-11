@@ -1,44 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
-class ClientList extends Component {
-	constructor() {
-		super();
-		this.state = {
-			clientList: [],
-			clientListLoaded: false,
-		}
-	}
+const ClientList = (props) => (
+	<div>
+		<List>
+			{props.clients.map((client, index) => (
+				<ListItem button key={index}>
+					<ListItemText>{client.name}</ListItemText>
+				</ListItem>
+			))}
+		</List>
+	</div>
+);
 
-	componentDidMount() {
-		fetch('/clients')
-			.then(res => res.json)
-			.then(res => {
-				this.setState({
-					clientList: res.clients,
-					clientListLoaded: true
-				})
-			})
-			.catch(error => console.error(error));
-	}
+ClientList.propTypes = {
+	clients: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.number.isRequired,
+		name: PropTypes.string.isRequired,
+	})),
+}
 
-	renderClients() {
-		return this.state.clientList.map(client => {
-			return (
-				<div className="client" key={client.id}>
-					<h1>{client.name}</h1>
-				</div>
-			)
-		})
-	}
-
-	render() {
-		return (
-			<div className="client-list">
-				{(this.state.clientListLoaded)
-				? this.renderClients() : <p>Loading...</p>}
-			</div>
-		)
-	}
+ClientList.defaultProps = {
+	clients: [],
 }
 
 export default ClientList;
