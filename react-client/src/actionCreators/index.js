@@ -17,7 +17,7 @@ export function searchClients() {
 			}
 		}).then(response => response.json())
 			.then(json => {
-				dispatch({type: SEARCH_CLIENTS, payload: json})
+				dispatch({type: SEARCH_CLIENTS, payload: json.clients})
 			})
 			.catch(error => console.error(error)); // TODO: Dispatch fetch error
 	}
@@ -28,15 +28,15 @@ export function loginUser(username, password) {
 		fetch('/login', {
 			method: 'POST',
 			body: JSON.stringify({
-				username: username,
-				password: password
+				username: 'matt-the-wizard',
+				password: 'supersecret'
 			}),
 			headers: {
 				'Content-Type': 'application/json',
 			}
 		}).then(response => response.json())
-			.then(token => {
-				dispatch({type: LOGIN_USER, payload: token})
+			.then(response => {
+				dispatch({type: LOGIN_USER, payload: response.token})
 			})
 			.catch(error => console.error(error)); // TODO: Dispatch login error
 	}

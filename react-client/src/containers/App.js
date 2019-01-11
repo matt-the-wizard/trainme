@@ -17,25 +17,18 @@ class App extends Component {
 			updateUsername,
 			updatePassword,
 			clients,
-			errorMessage,
-			token,
+			searchClients,
 		} = this.props;
 
 		return (
 			<Router>
 				<div>
-					<Route path="/login" render={(props) =>
-						<LoginForm {...props}
-											 username={username}
-											 password={password}
-											 onLogin={loginUser}
-											 onUsernameChange={updateUsername}
-											 onPasswordChange={updatePassword}
-						/>}
-					/>
-					<PrivateRoute path='/clients' isAuthenticated={token} render={(props) =>
-						<ClientList {...props} clients={clients} />} />
-					<p>{errorMessage}</p>
+					<LoginForm username={username}
+										 password={password}
+										 onLogin={loginUser}
+										 onUsernameChange={updateUsername}
+										 onPasswordChange={updatePassword} />
+					<ClientList clients={clients} refresh={searchClients} />
 				</div>
 			</Router>
 		);
