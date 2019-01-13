@@ -28,8 +28,8 @@ export function loginUser(username, password) {
 		fetch('/login', {
 			method: 'POST',
 			body: JSON.stringify({
-				username: 'matt-the-wizard',
-				password: 'supersecret'
+				username,
+				password,
 			}),
 			headers: {
 				'Content-Type': 'application/json',

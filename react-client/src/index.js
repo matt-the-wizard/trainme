@@ -12,8 +12,8 @@ const defaultState = {
 	clientsOrder: [],
 	token: '',
 	errorMessage: '',
-	username: 'matt-the-wizard',
-	password: 'supersecret'
+	username: '',
+	password: ''
 };
 
 const composeEnhancers = compose;

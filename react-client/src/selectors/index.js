@@ -17,3 +17,5 @@ export const getUsername = state => state.username;
 export const getPassword = state => state.password;
 export const getErrorMessage = state => state.errorMessage;
 export const getToken = state => state.token;
+
+export const getIsAuthenticated = createSelector([getToken], (token) => Boolean(token));

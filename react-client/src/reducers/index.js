@@ -38,6 +38,7 @@ export default function Reducer(state = {
 			return {
 				...state,
 				token: action.payload,
+				password: '',
 			};
 		default:
 			return state;
