@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getOrderedClients } from '../selectors';
+import {getErrorMessage, showErrorMessage, getOrderedClients} from '../selectors';
 import { searchClients } from '../actionCreators';
 import ClientList from '../components/ClientList';
 
@@ -11,15 +11,10 @@ class ClientsPage extends Component {
 		this.props.searchClients();
   }
 
-	// componentDidUpdate() {
-	// 	this.props.searchClients();
-	// }
-
 	render() {
-		const { clients } = this.props;
-
+		const { clients, showErrorMessage, errorMessage } = this.props;
 		return (
-			<ClientList clients={clients}/>
+			showErrorMessage ? errorMessage : <ClientList clients={clients}/>
     )
   }
 }
@@ -29,16 +24,21 @@ ClientsPage.propTypes = {
 		id: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
   })),
-  searchClients: PropTypes.func.isRequired
+  searchClients: PropTypes.func.isRequired,
+	errorMessage: PropTypes.string,
+	showErrorMessage: PropTypes.bool.isRequired,
 };
 
 ClientsPage.defaultProps = {
   clients: [],
+	errorMessage: '',
 };
 
 const mapStateToProps = (state) => {
 	return {
 		clients: getOrderedClients(state),
+		errorMessage: getErrorMessage(state),
+		showErrorMessage: showErrorMessage(state),
 	}
 }
 

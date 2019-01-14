@@ -13,8 +13,10 @@ const LoginForm = (props) => (
 		<Redirect to='/' /> :
 		<div>
 			<TextField placeholder="username" type="text" value={props.username} onChange={(evt) => props.onUsernameChange(evt, evt.target.value)} />
+			<br />
 			<TextField placeholder="password" type="password" value={props.password} onChange={(evt) => props.onPasswordChange(evt, evt.target.value)} />
-			<Button onClick={(evt) => props.onLogin(evt, props.username, props.password)} >Login</Button>
+			<br />
+			<Button color="primary" onClick={(evt) => props.onLogin(evt, props.username, props.password)} >Login</Button>
 		</div>
 );
 

@@ -2,13 +2,15 @@ import {
 	SEARCH_CLIENTS,
 	LOGIN_USER,
 	UPDATE_PASSWORD,
-	UPDATE_USERNAME
+	UPDATE_USERNAME, LOGIN_USER_FAILED, SEARCH_CLIENTS_FAILED
 } from '../actions';
 
+import {getToken} from "../selectors";
+
 export function searchClients() {
-	return (dispatch, getState) => {
-		const token = getState().token;
-		fetch('/clients', {
+	return (dispatch) => {
+		const token = getToken();
+		fetch('/coach_api/clients', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -19,13 +21,15 @@ export function searchClients() {
 			.then(json => {
 				dispatch({type: SEARCH_CLIENTS, payload: json.clients})
 			})
-			.catch(error => console.error(error)); // TODO: Dispatch fetch error
+			.catch(error => {
+				dispatch({type: SEARCH_CLIENTS_FAILED, payload: "Unable to load clients" })
+			});
 	}
 }
 
 export function loginUser(username, password) {
-	return (dispatch, getState) => {
-		fetch('/login', {
+	return (dispatch) => {
+		fetch('/coach_api/login', {
 			method: 'POST',
 			body: JSON.stringify({
 				username,
@@ -38,7 +42,9 @@ export function loginUser(username, password) {
 			.then(response => {
 				dispatch({type: LOGIN_USER, payload: response.token})
 			})
-			.catch(error => console.error(error)); // TODO: Dispatch login error
+			.catch(error => {
+				dispatch({type: LOGIN_USER_FAILED, payload: "Invalid username and password" })
+			});
 	}
 }
 

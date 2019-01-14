@@ -10,7 +10,6 @@ import * as serviceWorker from './serviceWorker';
 const defaultState = {
 	clients: {},
 	clientsOrder: [],
-	token: '',
 	errorMessage: '',
 	username: '',
 	password: ''

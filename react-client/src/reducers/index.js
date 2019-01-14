@@ -2,7 +2,7 @@ import {
 	SEARCH_CLIENTS,
 	LOGIN_USER,
 	UPDATE_USERNAME,
-	UPDATE_PASSWORD
+	UPDATE_PASSWORD, LOGIN_USER_FAILED, SEARCH_CLIENTS_FAILED
 } from '../actions';
 
 export default function Reducer(state = {
@@ -21,10 +21,16 @@ export default function Reducer(state = {
 					if (first.name < second.name)
 						return -1;
 					return 0;
-				}).map((value) => value.id)
+				}).map((value) => value.id),
+				errorMessage: null,
+			};
+		case SEARCH_CLIENTS_FAILED:
+			return {
+				...state,
+				clients: [],
+				errorMessage: action.payload,
 			};
 		case UPDATE_USERNAME:
-			console.log(action);
 			return {
 				...state,
 				username: action.payload,
@@ -35,10 +41,17 @@ export default function Reducer(state = {
 				password: action.payload,
 			};
 		case LOGIN_USER:
+			localStorage.setItem('TOKEN', action.payload);
 			return {
 				...state,
-				token: action.payload,
 				password: '',
+				errorMessage: null
+			};
+		case LOGIN_USER_FAILED:
+			localStorage.setItem('TOKEN', null);
+			return {
+				...state,
+				errorMessage: action.payload,
 			};
 		default:
 			return state;
