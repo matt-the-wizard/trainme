@@ -2,11 +2,12 @@
   "name": "train-me",
   "license": "MIT",
   "engines": {
-    "node": "10.15.0"
+    "node": "10.15.0",
+    "yarn": "1.6.0"
   },
   "scripts": {
-    "build": "cd react-client && npm run-script build",
+    "build": "yarn -cwd react-client install && yarn -cwd react-client build",
     "deploy": "cp -a react-client/build/. public/",
-    "heroku-postbuild": "npm run-script build && npm run-script deploy"
+    "heroku-postbuild": "yarn build && yarn deploy"
   }
 }
