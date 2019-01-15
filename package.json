@@ -2,7 +2,7 @@
   "name": "train-me",
   "license": "MIT",
   "engines": {
-    "node": "10.15.0",
+    "node": "10.15.0"
   },
   "scripts": {
     "install": "cd react-client && npm install",
