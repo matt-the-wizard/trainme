@@ -1,0 +1,12 @@
+{
+  "name": "train-me",
+  "license": "MIT",
+  "engines": {
+    "node": "10.15.0"
+  },
+  "scripts": {
+    "build": "cd react-client && npm run-script build",
+    "deploy": "cp -a react-client/build/. public/",
+    "heroku-postbuild": "npm run-script build && npm run-script deploy"
+  }
+}
