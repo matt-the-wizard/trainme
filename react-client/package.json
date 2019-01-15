@@ -16,6 +16,9 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
+  "engines": {
+    "node": "10.15.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
