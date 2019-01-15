@@ -17,7 +17,9 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
+if ['development', 'test'].include? Rails.env
+  Dotenv::Railtie.load
+end
 
 module Trainme
   class Application < Rails::Application
