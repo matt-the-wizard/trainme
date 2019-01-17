@@ -15,7 +15,7 @@ require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load unless Rails.env.production
+Dotenv::Railtie.load unless Rails.env == 'production'
 
 module Trainme
   class Application < Rails::Application
