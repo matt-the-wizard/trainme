@@ -25,11 +25,10 @@ const ClientList = (props) => {
 	return (
 		<div>
 			<Paper className={classes.root}>
-				<Typography variant="h6" align="center">Clients</Typography>
 				<Table className={classes.table}>
 					<TableHead>
 						<TableRow>
-							<TableCell>Name</TableCell>
+							<TableCell>Clients</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>

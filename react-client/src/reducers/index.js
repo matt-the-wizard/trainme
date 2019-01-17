@@ -1,15 +1,15 @@
 import {
-	SEARCH_CLIENTS,
-	LOGIN_USER,
+	SEARCH_CLIENTS_SUCCEEDED,
+	LOGIN_USER_SUCCESS,
 	UPDATE_USERNAME,
-	UPDATE_PASSWORD, LOGIN_USER_FAILED, SEARCH_CLIENTS_FAILED
+	UPDATE_PASSWORD, LOGIN_USER_FAILED, SEARCH_CLIENTS_FAILED, NULLIFY_TOKEN
 } from '../actions';
 
 export default function Reducer(state = {
 	clientsOrder: [],
 }, action) {
 	switch (action.type) {
-		case SEARCH_CLIENTS:
+		case SEARCH_CLIENTS_SUCCEEDED:
 			return {
 				...state,
 				clients: action.payload.reduce((previous, current) => (
@@ -40,18 +40,22 @@ export default function Reducer(state = {
 				...state,
 				password: action.payload,
 			};
-		case LOGIN_USER:
-			localStorage.setItem('TOKEN', action.payload);
+		case LOGIN_USER_SUCCESS:
 			return {
 				...state,
 				password: '',
-				errorMessage: null
+				token: action.payload
 			};
 		case LOGIN_USER_FAILED:
-			localStorage.setItem('TOKEN', null);
 			return {
 				...state,
+				password: '',
 				errorMessage: action.payload,
+			};
+		case NULLIFY_TOKEN:
+			return {
+				...state,
+				token: null
 			};
 		default:
 			return state;

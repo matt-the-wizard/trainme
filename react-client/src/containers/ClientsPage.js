@@ -9,7 +9,7 @@ import ClientList from '../components/ClientList';
 class ClientsPage extends Component {
 	componentDidMount() {
 		this.props.searchClients();
-  }
+  	}
 
 	render() {
 		const { clients, showErrorMessage, errorMessage } = this.props;

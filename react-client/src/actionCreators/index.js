@@ -1,15 +1,15 @@
-import {
-	SEARCH_CLIENTS,
-	LOGIN_USER,
-	UPDATE_PASSWORD,
-	UPDATE_USERNAME, LOGIN_USER_FAILED, SEARCH_CLIENTS_FAILED
-} from '../actions';
-
 import {getToken} from "../selectors";
+import {NULLIFY_TOKEN} from "../actions";
+import {SEARCH_CLIENTS_SUCCEEDED} from "../actions";
+import {SEARCH_CLIENTS_FAILED} from "../actions";
+import {LOGIN_USER_SUCCESS} from "../actions";
+import {LOGIN_USER_FAILED} from "../actions";
+import {UPDATE_USERNAME} from "../actions";
+import {UPDATE_PASSWORD} from "../actions";
 
 export function searchClients() {
-	return (dispatch) => {
-		const token = getToken();
+	return (dispatch, getState) => {
+		const token = getToken(getState());
 		fetch('/coach_api/clients', {
 			method: 'GET',
 			headers: {
@@ -18,12 +18,12 @@ export function searchClients() {
 				token: token,
 			}
 		}).then(response => response.json())
-			.then(json => {
-				dispatch({type: SEARCH_CLIENTS, payload: json.clients})
-			})
-			.catch(error => {
-				dispatch({type: SEARCH_CLIENTS_FAILED, payload: "Unable to load clients" })
-			});
+		.then(json => {
+			dispatch({type: SEARCH_CLIENTS_SUCCEEDED, payload: json.clients})
+		})
+		.catch(error => {
+			dispatch({type: SEARCH_CLIENTS_FAILED, payload: "Unable to load clients" })
+		});
 	}
 }
 
@@ -39,12 +39,12 @@ export function loginUser(username, password) {
 				'Content-Type': 'application/json',
 			}
 		}).then(response => response.json())
-			.then(response => {
-				dispatch({type: LOGIN_USER, payload: response.token})
-			})
-			.catch(error => {
-				dispatch({type: LOGIN_USER_FAILED, payload: "Invalid username and password" })
-			});
+		.then(response => {
+			dispatch({type: LOGIN_USER_SUCCESS, payload: response.token})
+		})
+		.catch(error => {
+			dispatch({type: LOGIN_USER_FAILED, payload: "Invalid username and password" })
+		});
 	}
 }
 

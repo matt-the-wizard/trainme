@@ -19,5 +19,5 @@ export const getPassword = state => state.password;
 export const getErrorMessage = state => state.errorMessage;
 export const showErrorMessage = createSelector([getErrorMessage], (message) => Boolean(message));
 
-export const getToken = () => localStorage.getItem('TOKEN');
+export const getToken = state => state.token;
 export const getIsAuthenticated = createSelector([getToken], (token) => Boolean(token));
