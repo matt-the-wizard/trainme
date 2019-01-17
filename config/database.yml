@@ -14,5 +14,3 @@ test:
 production:
   <<: *default
   database: trainme_production
-  username: trainme
-  password: <%= ENV['TRAINME_DATABASE_PASSWORD'] %>
