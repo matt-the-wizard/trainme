@@ -3,15 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0b4d1d95-0a23-4117-a6c7-8a225a545575" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-client/src/actionCreators/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/actionCreators/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-client/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/actions/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-client/src/components/ClientList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/components/ClientList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-client/src/containers/ClientsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/containers/ClientsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-client/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-client/src/selectors/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/selectors/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-client/src/components/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/components/LoginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-client/src/containers/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-client/src/containers/App.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +24,7 @@
     <SUITE FILE_PATH="coverage/trainme@Foreman.rcov" NAME="Foreman Development Coverage Results" MODIFIED="1547733140526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="trainme" />
     <SUITE FILE_PATH="coverage/trainme@db_seed.rcov" NAME="db:seed Coverage Results" MODIFIED="1547695628297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="trainme" />
     <SUITE FILE_PATH="coverage/trainme@Rails_console__trainme.rcov" NAME="Rails console: trainme Coverage Results" MODIFIED="1547697496275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="trainme" />
-    <SUITE FILE_PATH="coverage/trainme@Foreman_Development.rcov" NAME="Foreman Development Coverage Results" MODIFIED="1547742913442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="trainme" />
+    <SUITE FILE_PATH="coverage/trainme@Foreman_Development.rcov" NAME="Foreman Development Coverage Results" MODIFIED="1547832832695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="trainme" />
     <SUITE FILE_PATH="coverage/trainme@Foreman_Production.rcov" NAME="Foreman Production Coverage Results" MODIFIED="1547739221708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="trainme" />
     <SUITE FILE_PATH="coverage/trainme@db_migrate__trainme.rcov" NAME="db:migrate: trainme Coverage Results" MODIFIED="1547695623128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="trainme" />
     <SUITE FILE_PATH="coverage/trainme@Development__trainme.rcov" NAME="Development: trainme Coverage Results" MODIFIED="1547732915149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="trainme" />
@@ -96,39 +94,42 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react-client/src/selectors/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react-client/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Procfile.dev">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react-client/src/containers/ClientsPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="69">
+              <caret line="3" column="38" lean-forward="true" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/react-client/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="623">
+              <caret line="36" column="3" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react-client/src/components/LoginForm.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react-client/src/components/PrivateRoute.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,8 +138,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react-client/src/components/ClientList.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="999">
+              <caret line="45" column="2" selection-start-line="45" selection-start-column="2" selection-end-line="45" selection-end-column="2" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -146,13 +147,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/react-client/src/containers/App.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react-client/src/containers/LoginFormPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+            <state relative-caret-position="175">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
-                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -162,7 +163,7 @@
         <entry file="file://$PROJECT_DIR$/react-client/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
-              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -171,31 +172,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react-client/src/actionCreators/index.js">
+        <entry file="file://$PROJECT_DIR$/react-client/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+            <state relative-caret-position="69">
+              <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react-client/public/favicon.ico">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react-client/src/containers/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="512">
+              <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
               <folding>
-                <element signature="e#1#39#0" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react-client/src/actions/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="53" lean-forward="true" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react-client/src/reducers/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="943">
-              <caret line="46" column="37" lean-forward="true" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -210,6 +207,7 @@
       <find>-x86-mingw32</find>
       <find>bcrypt</find>
       <find>pg</find>
+      <find>LoginForm</find>
     </findStrings>
   </component>
   <component name="GeneratorOptions">
@@ -241,7 +239,6 @@
         <option value="$PROJECT_DIR$/app/controllers/coach_api/api_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/coach_api/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/coach_api/sessions_controller.rb" />
-        <option value="$PROJECT_DIR$/react-client/src/components/LoginForm.jsx" />
         <option value="$PROJECT_DIR$/app/controllers/coach_api/clients_controller.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/lib/tasks/start.rake" />
@@ -259,12 +256,15 @@
         <option value="$PROJECT_DIR$/react-client/src/actions/index.js" />
         <option value="$PROJECT_DIR$/react-client/src/selectors/index.js" />
         <option value="$PROJECT_DIR$/react-client/src/reducers/index.js" />
-        <option value="$PROJECT_DIR$/react-client/package.json" />
         <option value="$PROJECT_DIR$/react-client/src/index.js" />
-        <option value="$PROJECT_DIR$/react-client/src/actionCreators/index.js" />
         <option value="$PROJECT_DIR$/react-client/src/containers/ClientsPage.js" />
+        <option value="$PROJECT_DIR$/react-client/src/containers/LoginFormPage.js" />
+        <option value="$PROJECT_DIR$/react-client/src/actionCreators/index.js" />
         <option value="$PROJECT_DIR$/react-client/src/components/ClientList.jsx" />
+        <option value="$PROJECT_DIR$/react-client/src/components/LoginForm.jsx" />
         <option value="$PROJECT_DIR$/react-client/src/containers/App.js" />
+        <option value="$PROJECT_DIR$/react-client/public/index.html" />
+        <option value="$PROJECT_DIR$/react-client/package.json" />
       </list>
     </option>
   </component>
@@ -276,10 +276,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1852" />
-    <option name="y" value="-157" />
-    <option name="width" value="1823" />
-    <option name="height" value="1122" />
+    <option name="x" value="-1904" />
+    <option name="y" value="-48" />
+    <option name="width" value="1864" />
+    <option name="height" value="975" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -300,23 +300,26 @@
             <path>
               <item name="trainme" type="b2602c69:ProjectViewProjectNode" />
               <item name="trainme" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="react-client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="trainme" type="b2602c69:ProjectViewProjectNode" />
               <item name="trainme" type="462c0819:PsiDirectoryNode" />
+              <item name="react-client" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="trainme" type="b2602c69:ProjectViewProjectNode" />
               <item name="trainme" type="462c0819:PsiDirectoryNode" />
               <item name="react-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="trainme" type="b2602c69:ProjectViewProjectNode" />
               <item name="trainme" type="462c0819:PsiDirectoryNode" />
               <item name="react-client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="actionCreators" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="trainme" type="b2602c69:ProjectViewProjectNode" />
@@ -331,13 +334,6 @@
               <item name="react-client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trainme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trainme" type="462c0819:PsiDirectoryNode" />
-              <item name="react-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="reducers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -744,23 +740,23 @@
       <workItem from="1547688358730" duration="2536000" />
       <workItem from="1547695408541" duration="3927000" />
       <workItem from="1547732749205" duration="1292000" />
-      <workItem from="1547738295533" duration="6039000" />
+      <workItem from="1547738295533" duration="11452000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61629000" />
+    <option name="totallyTimeSpent" value="67042000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1852" y="-157" width="1823" height="1122" extended-state="0" />
+    <frame x="-1904" y="-48" width="1864" height="975" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19146547" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18715698" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32938856" />
-      <window_info anchor="bottom" x="28" y="89" width="1462" height="745" id="Run" order="2" weight="0.47534516" />
+      <window_info anchor="bottom" x="28" y="89" width="1462" height="745" id="Run" order="2" weight="0.47520185" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -768,7 +764,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32902467" />
-      <window_info anchor="bottom" x="27" y="81" width="1487" height="765" id="Terminal" order="10" sideWeight="0.49963155" weight="0.5088757" />
+      <window_info anchor="bottom" x="27" y="81" width="1487" height="765" id="Terminal" order="10" sideWeight="0.49963155" weight="0.50865054" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5003685" side_tool="true" weight="0.50955415" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32961586" />
       <window_info anchor="bottom" id="TypeScript" order="13" />
@@ -783,15 +779,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/react-client/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react-client/src/App.css" />
-    <entry file="file://$PROJECT_DIR$/react-client/src/modules/Auth.js" />
     <entry file="file://$PROJECT_DIR$/react-client/src/components/Dashboard.jsx" />
     <entry file="file://$PROJECT_DIR$/react-client/src/index.css" />
     <entry file="file://$PROJECT_DIR$/react-client/src/logo.svg" />
@@ -970,37 +957,10 @@
     <entry file="file://$PROJECT_DIR$/test/controllers/clients_controller_test.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/react-client/src/components/PrivateRoute.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react-client/src/components/LoginForm.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="52" lean-forward="true" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile.dev">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react-client/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -1020,45 +980,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/react-client/src/selectors/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+        <state relative-caret-position="276">
+          <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react-client/src/index.js">
+    <entry file="file://$PROJECT_DIR$/react-client/src/actionCreators/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state relative-caret-position="-229">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-client/src/components/PrivateRoute.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react-client/src/actionCreators/index.js">
+    <entry file="file://$PROJECT_DIR$/react-client/src/components/ClientList.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        <state relative-caret-position="999">
+          <caret line="45" column="2" selection-start-line="45" selection-start-column="2" selection-end-line="45" selection-end-column="2" />
           <folding>
-            <element signature="e#1#39#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-client/src/containers/LoginFormPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react-client/src/containers/ClientsPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="69">
+          <caret line="3" column="38" lean-forward="true" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react-client/src/components/ClientList.jsx">
+    <entry file="file://$PROJECT_DIR$/react-client/src/components/LoginForm.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="247">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -1067,11 +1044,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/react-client/src/containers/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        <state relative-caret-position="512">
+          <caret line="32" column="6" lean-forward="true" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-client/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-client/public/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-client/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-client/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="36" column="3" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="3" />
         </state>
       </provider>
     </entry>

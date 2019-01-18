@@ -1,5 +1,4 @@
 import {getToken} from "../selectors";
-import {NULLIFY_TOKEN} from "../actions";
 import {SEARCH_CLIENTS_SUCCEEDED} from "../actions";
 import {SEARCH_CLIENTS_FAILED} from "../actions";
 import {LOGIN_USER_SUCCESS} from "../actions";
