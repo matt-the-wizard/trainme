@@ -8,12 +8,14 @@ import Reducer from './reducers';
 import * as serviceWorker from './serviceWorker';
 
 const defaultState = {
-  clients: {},
-  clientsOrder: [],
-  errorMessage: '',
-  username: '',
-  password: '',
-  token: '',
+	clients: {},
+	clientsOrder: [],
+	errorMessage: '',
+	username: '',
+	password: '',
+	token: '',
+	newClientName: '',
+	newClientModalOpen: false,
 };
 
 const store = createStore(

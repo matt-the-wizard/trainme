@@ -11,14 +11,17 @@ module CoachApi
     end
 
     def create
-      client = Client.new(_client_params)
-      client.coach = current_user
+      params.require(:client).permit(:name)
+      service_params = {
+        name: params[:client][:name],
+        coach: current_user
+      }
+      response = ClientService.new(service_params).create_client
 
-      # TODO: Replace with client creation service
-      if client.save
-        render json: { client: client }, status: :ok
+      if response.errors?
+        render json: { errors: response.errors }, status: :conflict
       else
-        render json: { errors: client.errors }, status: :conflict
+        render json: { client: response.payload }, status: :ok
       end
     end
 

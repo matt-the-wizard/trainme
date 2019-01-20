@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const getClients = state => state.clients;
+export const getClients = state => state.clients;
 const getClientsOrder = state => state.clientsOrder;
 
 export const getOrderedClients = createSelector(
@@ -21,3 +21,6 @@ export const showErrorMessage = createSelector([getErrorMessage], (message) => B
 
 export const getToken = state => state.token;
 export const getIsAuthenticated = createSelector([getToken], (token) => Boolean(token));
+
+export const getNewClientName = state => state.newClientName;
+export const getNewClientModalOpen = state => state.newClientModalOpen;

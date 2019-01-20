@@ -10,5 +10,4 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
 end
