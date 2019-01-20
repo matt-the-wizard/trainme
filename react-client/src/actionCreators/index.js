@@ -57,6 +57,7 @@ export function addClient() {
 		}).then(response => response.json())
 			.then(json => {
 				dispatch({type: ADD_CLIENT_SUCCEEDED, payload: json.client});
+				// dispatch(searchClients())
 				// Call searchClients()
 			})
 			.catch(error => {

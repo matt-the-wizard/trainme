@@ -22,19 +22,11 @@ export default function Reducer(state = {
 				clients: action.payload.reduce((previous, current) => (
 					{...previous, [current.id]: current }
 				), {}),
-				clientsOrder: action.payload.sort((first, second) => {
-					if (first.name > second.name)
-						return 1;
-					if (first.name < second.name)
-						return -1;
-					return 0;
-				}).map((value) => value.id),
 				errorMessage: null,
 			};
 		case SEARCH_CLIENTS_FAILED:
 			return {
 				...state,
-				clients: [],
 				errorMessage: action.payload,
 			};
 		case UPDATE_USERNAME:
@@ -67,6 +59,10 @@ export default function Reducer(state = {
 		case ADD_CLIENT_SUCCEEDED:
 			return {
 				...state,
+				clients: {
+					...state.clients,
+					[action.payload.id]: action.payload.data,
+				},
 				newClientName: '',
 				newClientModalOpen: false,
 			};

@@ -13,7 +13,7 @@ const defaultState = {
 	errorMessage: '',
 	username: '',
 	password: '',
-	token: '',
+	token: 'DA6yoscsyZAPKV2y7EdHCV46',
 	newClientName: '',
 	newClientModalOpen: false,
 };

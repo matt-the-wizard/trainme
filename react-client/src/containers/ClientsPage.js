@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getErrorMessage, showErrorMessage, getOrderedClients} from '../selectors';
+import {getErrorMessage, showErrorMessage, getClientsOrderedByName} from '../selectors';
 import { searchClients, toggleNewClientModal } from '../actionCreators';
 import ClientList from '../components/ClientList';
 import NewClientModal from './NewClientModal';
@@ -46,7 +46,7 @@ ClientsPage.defaultProps = {
 
 const mapStateToProps = (state) => {
 	return {
-		clients: getOrderedClients(state),
+		clients: getClientsOrderedByName(state),
 		errorMessage: getErrorMessage(state),
 		showErrorMessage: showErrorMessage(state),
 	}

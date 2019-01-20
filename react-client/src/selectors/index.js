@@ -1,17 +1,37 @@
 import { createSelector } from 'reselect';
 
 export const getClients = state => state.clients;
-const getClientsOrder = state => state.clientsOrder;
 
-export const getOrderedClients = createSelector(
-	[getClients, getClientsOrder],
-	(clients, clientsOrder) => clientsOrder
-		.map((key) => ({
-			...clients[key],
-			id: key,
-			name: clients[key].name
-		}))
+export const getClientsWithNameSortKey = createSelector([getClients], clients => Object.values(clients)
+.map(client => ({
+	...client, 
+	sortKey: client.name.toLowerCase()
+})));
+
+export const getClientsOrderedByName = createSelector(
+	[getClientsWithNameSortKey],
+	(clients) => clients
+	.sort((first, second) => {
+		if (first.sortKey > second.sortKey)
+			return 1;
+		if (first.sortKey < second.sortKey)
+			return -1;
+		return 0;
+	})
 );
+
+export const getClientsOrderedByNameDesc = createSelector([getClientsWithNameSortKey],
+	(clients) => clients
+	.sort((first, second) => {
+		if (first.sortKey < second.sortKey)
+			return 1;
+		if (first.sortKey > second.sortKey)
+			return -1;
+		return 0;
+	})
+);
+
+export const getOrderedClients = createSelector();
 
 export const getUsername = state => state.username;
 export const getPassword = state => state.password;
