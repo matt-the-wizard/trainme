@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getErrorMessage, showErrorMessage, getClientsOrderedByName} from '../selectors';
-import { searchClients, toggleNewClientModal } from '../actionCreators';
+import { searchClients, openNewClientModal } from '../actionCreators';
 import ClientList from '../components/ClientList';
 import NewClientModal from './NewClientModal';
 import AddIcon from '@material-ui/icons/Add';
@@ -15,12 +15,12 @@ class ClientsPage extends Component {
   	}
 
 	render() {
-		const { clients, showErrorMessage, errorMessage, toggleNewClientModal } = this.props;
+		const { clients, showErrorMessage, errorMessage, onOpenNewClientModal } = this.props;
 		return (
 			<div>
 				{showErrorMessage ? errorMessage :
 					<ClientList clients={clients}>
-						<Fab size="small" color="secondary" aria-label="Add" onClick={() => toggleNewClientModal()}><AddIcon /></Fab>
+						<Fab size="small" color="secondary" aria-label="Add" onClick={onOpenNewClientModal}><AddIcon /></Fab>
 						<NewClientModal />
 					</ClientList>}
 			</div>
@@ -34,7 +34,7 @@ ClientsPage.propTypes = {
 		name: PropTypes.string.isRequired,
 	})),
 	searchClients: PropTypes.func.isRequired,
-	toggleNewClientModal: PropTypes.func.isRequired,
+	onOpenNewClientModal: PropTypes.func.isRequired,
 	errorMessage: PropTypes.string,
 	showErrorMessage: PropTypes.bool.isRequired,
 };
@@ -53,8 +53,16 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({searchClients, toggleNewClientModal}, dispatch)
+  return bindActionCreators({searchClients, openNewClientModal}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientsPage);
+const mergeProps = (stateProps, dispatchProps, props) => {
+	return {
+		...props,
+		...stateProps,
+		...dispatchProps,
+		onOpenNewClientModal: dispatchProps.openNewClientModal,
+	}
+};
 
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ClientsPage);

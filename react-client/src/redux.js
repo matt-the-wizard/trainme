@@ -6,7 +6,7 @@ import {
 import { isProduction } from './env';
 
 const composeEnhancers =
-  (!isProduction() && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  (!isProduction() && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ :
   originalCompose;
 
 export { createStore, applyMiddleware };

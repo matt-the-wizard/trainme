@@ -14,7 +14,8 @@ import {
 	UPDATE_USERNAME,
 	UPDATE_PASSWORD,
 	UPDATE_NEW_CLIENT_NAME,
-	TOGGLE_NEW_CLIENT_MODAL
+	OPEN_NEW_CLIENT_MODAL,
+	CLOSE_NEW_CLIENT_MODAL
 }
   from "../actions";
 
@@ -57,11 +58,9 @@ export function addClient() {
 		}).then(response => response.json())
 			.then(json => {
 				dispatch({type: ADD_CLIENT_SUCCEEDED, payload: json.client});
-				// dispatch(searchClients())
-				// Call searchClients()
+				dispatch({type: CLOSE_NEW_CLIENT_MODAL});
 			})
 			.catch(error => {
-				console.error(error);
 				dispatch({type: ADD_CLIENT_FAILED, payload: "Error occurred adding this client" })
 			});
 	}
@@ -71,11 +70,12 @@ export function updateNewClientName(name='') {
 	return { type: UPDATE_NEW_CLIENT_NAME, payload: name }
 }
 
-export function toggleNewClientModal() {
-	return (dispatch, getState) => {
-		const open = getNewClientModalOpen(getState());
-		dispatch({type: TOGGLE_NEW_CLIENT_MODAL, payload: !open});
-	}
+export function openNewClientModal() {
+	return {type: OPEN_NEW_CLIENT_MODAL};
+}
+
+export function closeNewClientModal() {
+	return {type: CLOSE_NEW_CLIENT_MODAL};
 }
 
 export function loginUser(username, password) {

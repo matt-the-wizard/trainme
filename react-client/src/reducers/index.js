@@ -8,7 +8,8 @@ import {
 	NULLIFY_TOKEN,
 	ADD_CLIENT_SUCCEEDED,
 	ADD_CLIENT_FAILED,
-	TOGGLE_NEW_CLIENT_MODAL,
+	OPEN_NEW_CLIENT_MODAL,
+	CLOSE_NEW_CLIENT_MODAL,
 	UPDATE_NEW_CLIENT_NAME
 } from '../actions';
 
@@ -61,7 +62,7 @@ export default function Reducer(state = {
 				...state,
 				clients: {
 					...state.clients,
-					[action.payload.id]: action.payload.data,
+					[action.payload.id]: action.payload,
 				},
 				newClientName: '',
 				newClientModalOpen: false,
@@ -76,10 +77,15 @@ export default function Reducer(state = {
 				...state,
 				newClientName: action.payload,
 			};
-		case TOGGLE_NEW_CLIENT_MODAL:
+		case OPEN_NEW_CLIENT_MODAL:
 			return {
 				...state,
-				newClientModalOpen: action.payload,
+				newClientModalOpen: true,
+			};
+		case CLOSE_NEW_CLIENT_MODAL:
+			return {
+				...state,
+				newClientModalOpen: false,
 			};
 		default:
 			return state;
