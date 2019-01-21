@@ -4,24 +4,16 @@ import { Provider } from 'react-redux';
 import App from './containers/App';
 import { createStore, applyMiddleware, compose } from './redux';
 import thunk from 'redux-thunk';
-import Reducer from './reducers';
+import { combineReducers } from 'redux';
+import ClientReducer from './clients/reducers';
+import SecurityReducer from './security/reducers';
 import * as serviceWorker from './serviceWorker';
 
-const defaultState = {
-	clients: {},
-	clientsOrder: [],
-	errorMessage: '',
-	username: '',
-	password: '',
-	token: '',
-	newClientName: '',
-	newClientModalOpen: false,
-};
-
 const store = createStore(
-  Reducer,
-  defaultState,
-  compose(applyMiddleware(thunk)),
+  combineReducers({
+	  CLIENTS: ClientReducer,
+	  SECURITY: SecurityReducer
+  }), {}, compose(applyMiddleware(thunk)),
 );
 
 const render = Component => {

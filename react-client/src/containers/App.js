@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ClientsPage from './ClientsPage';
-import LoginFormPage from "./LoginFormPage";
-import PrivateRoute from '../components/PrivateRoute';
+import ClientsPage from '../clients/containers/ClientsPage';
+import LoginFormPage from "../security/containers/LoginFormPage";
+import PrivateRoute from '../security/components/PrivateRoute';
 
 import { withStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
