@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from "@material-ui/core/es/Typography/Typography";
 
 const styles = theme => ({
 	root: {
@@ -24,10 +25,14 @@ const ClientList = (props) => {
 	return (
 		<div>
 			<Paper className={classes.root}>
+				<Typography variant="h6" align="center">
+					Clients
+					<div>{props.children}</div>
+				</Typography>
 				<Table className={classes.table}>
 					<TableHead>
 						<TableRow>
-							<TableCell>Clients</TableCell>
+							<TableCell>Name</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
