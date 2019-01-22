@@ -18,11 +18,11 @@ class ClientsPage extends Component {
 		const { clients, showErrorMessage, errorMessage, onOpenNewClientModal } = this.props;
 		return (
 			<div>
-				{showErrorMessage ? errorMessage :
-					<ClientList clients={clients}>
-						<Fab size="small" color="secondary" aria-label="Add" onClick={onOpenNewClientModal}><AddIcon /></Fab>
-						<NewClientModal />
-					</ClientList>}
+				{showErrorMessage && errorMessage}
+				<ClientList clients={clients}>
+					<Fab size="small" color="secondary" aria-label="Add" onClick={onOpenNewClientModal}><AddIcon /></Fab>
+					<NewClientModal />
+				</ClientList>
 			</div>
     )
   }
@@ -32,6 +32,8 @@ ClientsPage.propTypes = {
 	clients: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		email: PropTypes.string.isRequired,
+		phone: PropTypes.string.isRequired
 	})),
 	searchClients: PropTypes.func.isRequired,
 	onOpenNewClientModal: PropTypes.func.isRequired,

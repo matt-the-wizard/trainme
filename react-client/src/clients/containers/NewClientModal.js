@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {getNewClientModalOpen, getNewClientName} from '../selectors';
-import { addClient, updateNewClientName, closeNewClientModal } from '../actionCreators';
+import {getNewClientModalOpen, getNewClientName, getNewClientEmail, getNewClientPhone} from '../selectors';
+import { addClient, updateNewClientName, updateNewClientPhone, updateNewClientEmail, closeNewClientModal } from '../actionCreators';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import ClientForm from '../components/ClientForm';
@@ -13,12 +13,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 class NewClientModal extends Component {
     render() {
-        const { name, onNameChange, onSubmit, onClose, open } = this.props;
+        const { name, email, phone, onNameChange, onEmailChange, onPhoneChange, onSubmit, onClose, open } = this.props;
         return (
             <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">{"New Client"}</DialogTitle>
                     <DialogContent>
-                        <ClientForm name={name} onNameChange={onNameChange} />
+                        <ClientForm name={name} email={email} phone={phone}
+                                    onNameChange={onNameChange} onEmailChange={onEmailChange} onPhoneChange={onPhoneChange} />
                     </DialogContent>
                     <DialogActions>
                     <Button variant={"contained"} color="primary" onClick={onSubmit}>
@@ -35,32 +36,48 @@ class NewClientModal extends Component {
 
 NewClientModal.propTypes = {
     name: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
     open: PropTypes.bool,
     onNameChange: PropTypes.func.isRequired,
+    onEmailChange: PropTypes.func.isRequired,
+    onPhoneChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
 };
 
 NewClientModal.defaultProps = {
     name: '',
+    email: '',
+    phone: '',
     open: false,
 };
 
 const mapStateToProps = (state) => {
     return {
         name: getNewClientName(state),
+        email: getNewClientEmail(state),
+        phone: getNewClientPhone(state),
         open: getNewClientModalOpen(state),
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ updateNewClientName, addClient, closeNewClientModal }, dispatch);
+    return bindActionCreators({
+        updateNewClientName,
+        updateNewClientPhone,
+        updateNewClientEmail,
+        addClient,
+        closeNewClientModal
+    }, dispatch);
 };
 
 const mergeProps = (stateProps, dispatchProps, props) => ({
     ...props,
     ...stateProps,
     onNameChange: (evt, name) => dispatchProps.updateNewClientName(name),
+    onEmailChange: (evt, email) => dispatchProps.updateNewClientEmail(email),
+    onPhoneChange: (evt, phone) => dispatchProps.updateNewClientPhone(phone),
     onSubmit: dispatchProps.addClient,
     onClose: dispatchProps.closeNewClientModal,
 });

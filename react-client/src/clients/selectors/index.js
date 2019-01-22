@@ -24,4 +24,7 @@ export const getErrorMessage = state => state.CLIENTS.errorMessage;
 export const showErrorMessage = createSelector([getErrorMessage], (message) => Boolean(message));
 
 export const getNewClientModalOpen = state => state.CLIENTS.newClientModalOpen;
-export const getNewClientName = state => state.CLIENTS.newClientName;
+
+export const getNewClientName = state => state.CLIENTS.newClient.name;
+export const getNewClientEmail = state => state.CLIENTS.newClient.email;
+export const getNewClientPhone = state => state.CLIENTS.newClient.phone;

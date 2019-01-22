@@ -1,5 +1,7 @@
 import {
+    getNewClientEmail,
     getNewClientName,
+    getNewClientPhone,
 } from "../selectors";
 
 import {
@@ -12,6 +14,8 @@ import {
     SEARCH_CLIENTS_SUCCEEDED,
     SEARCH_CLIENTS_FAILED,
     UPDATE_NEW_CLIENT_NAME,
+    UPDATE_NEW_CLIENT_PHONE,
+    UPDATE_NEW_CLIENT_EMAIL,
     OPEN_NEW_CLIENT_MODAL,
     CLOSE_NEW_CLIENT_MODAL
 }
@@ -40,7 +44,9 @@ export function searchClients() {
 export function addClient() {
     return (dispatch, getState) => {
         const token = getToken(getState());
-        const newClientName = getNewClientName(getState());
+        const name = getNewClientName(getState());
+        const email = getNewClientEmail(getState());
+        const phone = getNewClientPhone(getState());
         fetch('/coach_api/clients', {
             method: 'POST',
             headers: {
@@ -50,7 +56,9 @@ export function addClient() {
             },
             body: JSON.stringify({
                 client: {
-                    name: newClientName,
+                    name: name,
+                    email: email,
+                    phone: phone,
                 },
             }),
         }).then(response => response.json())
@@ -66,6 +74,14 @@ export function addClient() {
 
 export function updateNewClientName(name='') {
     return { type: UPDATE_NEW_CLIENT_NAME, payload: name }
+}
+
+export function updateNewClientEmail(email='') {
+    return { type: UPDATE_NEW_CLIENT_EMAIL, payload: email }
+}
+
+export function updateNewClientPhone(phone='') {
+    return { type: UPDATE_NEW_CLIENT_PHONE, payload: phone }
 }
 
 export function openNewClientModal() {

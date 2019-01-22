@@ -11,9 +11,11 @@ module CoachApi
     end
 
     def create
-      params.require(:client).permit(:name)
+      params.require(:client).permit(:name, :phone, :email)
       service_params = {
         name: params[:client][:name],
+        email: params[:client][:email],
+        phone: params[:client][:phone],
         coach: current_user
       }
       response = ClientService.new(service_params).create_client
