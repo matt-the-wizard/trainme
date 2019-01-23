@@ -8,6 +8,7 @@ import ClientList from '../components/ClientList';
 import NewClientModal from './NewClientModal';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
+import Paper from '@material-ui/core/Paper';
 
 class ClientsPage extends Component {
 	componentDidMount() {
@@ -18,11 +19,13 @@ class ClientsPage extends Component {
 		const { clients, showErrorMessage, errorMessage, onOpenNewClientModal } = this.props;
 		return (
 			<div>
-				{showErrorMessage && errorMessage}
-				<ClientList clients={clients}>
-					<Fab size="small" color="secondary" aria-label="Add" onClick={onOpenNewClientModal}><AddIcon /></Fab>
-					<NewClientModal />
-				</ClientList>
+				<Paper>
+					{showErrorMessage && errorMessage}<br />
+					<ClientList clients={clients}>
+						<Fab size="small" color="secondary" aria-label="Add" onClick={onOpenNewClientModal}><AddIcon /></Fab>
+					</ClientList>
+				</Paper>
+				<NewClientModal />
 			</div>
     )
   }
