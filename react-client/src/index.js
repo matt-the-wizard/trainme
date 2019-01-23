@@ -8,6 +8,11 @@ import { combineReducers } from 'redux';
 import ClientReducer from './clients/reducers';
 import SecurityReducer from './security/reducers';
 import * as serviceWorker from './serviceWorker';
+import {createMuiTheme} from "@material-ui/core";
+import orange from "@material-ui/core/colors/orange";
+import green from "@material-ui/core/colors/green";
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const store = createStore(
   combineReducers({
@@ -16,10 +21,23 @@ const store = createStore(
   }), {}, compose(applyMiddleware(thunk)),
 );
 
+const theme = createMuiTheme({
+    palette: {
+        primary: orange,
+        secondary: green,
+    },
+    typography: {
+        useNextVariants: true,
+    },
+});
+
 const render = Component => {
   ReactDOM.render(
     <Provider store={store}>
-      <Component />
+        <MuiThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component />
+        </MuiThemeProvider>
     </Provider>,
     document.getElementById('root'),
   );

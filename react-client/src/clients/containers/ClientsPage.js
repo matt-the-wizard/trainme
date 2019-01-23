@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getErrorMessage, showErrorMessage, getClientsOrderedByName} from '../selectors';
+import {getClientsOrderedByName} from '../selectors';
 import { searchClients, openNewClientModal } from '../actionCreators';
 import ClientList from '../components/ClientList';
 import NewClientModal from './NewClientModal';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 class ClientsPage extends Component {
 	componentDidMount() {
@@ -16,13 +18,24 @@ class ClientsPage extends Component {
   	}
 
 	render() {
-		const { clients, showErrorMessage, errorMessage, onOpenNewClientModal } = this.props;
+		const { clients, onOpenNewClientModal } = this.props;
 		return (
 			<div>
 				<Paper>
-					{showErrorMessage && errorMessage}<br />
 					<ClientList clients={clients}>
-						<Fab size="small" color="secondary" aria-label="Add" onClick={onOpenNewClientModal}><AddIcon /></Fab>
+						<div style={{flexGrow: 1}}>
+							<Grid container>
+								<Grid item xs align='left'>
+									<Fab size="small" color="secondary" aria-label="Add"  onClick={onOpenNewClientModal}><AddIcon /></Fab>
+								</Grid>
+								<Grid item xs align='center'>
+									<Typography variant="h5" gutterBottom>Clients</Typography>
+								</Grid>
+								<Grid item xs align='right'>
+									&nbsp;
+								</Grid>
+							</Grid>
+						</div>
 					</ClientList>
 				</Paper>
 				<NewClientModal />
@@ -40,20 +53,15 @@ ClientsPage.propTypes = {
 	})),
 	searchClients: PropTypes.func.isRequired,
 	onOpenNewClientModal: PropTypes.func.isRequired,
-	errorMessage: PropTypes.string,
-	showErrorMessage: PropTypes.bool.isRequired,
 };
 
 ClientsPage.defaultProps = {
 	clients: [],
-	errorMessage: '',
 };
 
 const mapStateToProps = (state) => {
 	return {
 		clients: getClientsOrderedByName(state),
-		errorMessage: getErrorMessage(state),
-		showErrorMessage: showErrorMessage(state),
 	}
 };
 

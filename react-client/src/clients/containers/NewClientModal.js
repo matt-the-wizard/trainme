@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {getNewClientModalOpen, getNewClientName, getNewClientEmail, getNewClientPhone} from '../selectors';
+import {getNewClientModalOpen, getNewClientName, getNewClientEmail, getNewClientPhone, getErrorMessage, showErrorMessage} from '../selectors';
 import { addClient, updateNewClientName, updateNewClientPhone, updateNewClientEmail, closeNewClientModal } from '../actionCreators';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -13,13 +13,14 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 class NewClientModal extends Component {
     render() {
-        const { name, email, phone, onNameChange, onEmailChange, onPhoneChange, onSubmit, onClose, open } = this.props;
+        const { name, email, phone, onNameChange, onEmailChange, onPhoneChange, onSubmit, onClose, open, showErrorMessage, errorMessage } = this.props;
         return (
             <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">{"New Client"}</DialogTitle>
                     <DialogContent>
                         <ClientForm name={name} email={email} phone={phone}
                                     onNameChange={onNameChange} onEmailChange={onEmailChange} onPhoneChange={onPhoneChange} />
+                        <br />{showErrorMessage && errorMessage}
                     </DialogContent>
                     <DialogActions>
                     <Button variant={"contained"} color="primary" onClick={onSubmit}>
@@ -44,6 +45,8 @@ NewClientModal.propTypes = {
     onPhoneChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string,
+    showErrorMessage: PropTypes.bool,
 };
 
 NewClientModal.defaultProps = {
@@ -51,6 +54,7 @@ NewClientModal.defaultProps = {
     email: '',
     phone: '',
     open: false,
+    showErrorMessage: false,
 };
 
 const mapStateToProps = (state) => {
@@ -59,6 +63,8 @@ const mapStateToProps = (state) => {
         email: getNewClientEmail(state),
         phone: getNewClientPhone(state),
         open: getNewClientModalOpen(state),
+        errorMessage: getErrorMessage(state),
+        showErrorMessage: showErrorMessage(state),
     }
 };
 
@@ -68,7 +74,7 @@ const mapDispatchToProps = (dispatch) => {
         updateNewClientPhone,
         updateNewClientEmail,
         addClient,
-        closeNewClientModal
+        closeNewClientModal,
     }, dispatch);
 };
 

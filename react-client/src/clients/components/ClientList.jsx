@@ -7,7 +7,6 @@ import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import Fab from '@material-ui/core/Fab';
 import PersonIcon from '@material-ui/icons/Person';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import Mailto from 'react-protected-mailto';
 import red from '@material-ui/core/colors/red';
@@ -33,10 +32,9 @@ const styles = theme => ({
 });
 
 const ClientList = (props) => {
-	const { classes, showTitle, updateClient } = props;
+	const { classes, updateClient } = props;
 	return (
 		<div>
-			{showTitle && <Typography variant="h5" gutterBottom>Clients</Typography>}
 			<List className={classes.root}>
 				<ListItem key='list-actions'>
 					{props.children}
@@ -62,9 +60,6 @@ const ClientList = (props) => {
 						<Fab className={classes.edit} onClick={updateClient}>
 							<EditIcon />
 						</Fab>
-						<Fab className={classes.delete}>
-							<DeleteIcon />
-						</Fab>
 					</ListItem>
 				))}
 			</List>
@@ -80,14 +75,12 @@ ClientList.propTypes = {
 		phone: PropTypes.string.isRequired,
 	})),
 	classes: PropTypes.object.isRequired,
-	showTitle: PropTypes.bool,
 	updateClient: PropTypes.func.isRequired,
 };
 
 ClientList.defaultProps = {
 	clients: [],
 	classes: {},
-	showTitle: true,
 	updateClient: () => {},
 };
 
