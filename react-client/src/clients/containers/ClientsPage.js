@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getClientsOrderedByName} from '../selectors';
-import { searchClients, openNewClientModal } from '../actionCreators';
+import { searchClients, openClientModal } from '../actionCreators';
 import ClientList from '../components/ClientList';
-import NewClientModal from './NewClientModal';
+import ClientModal from './ClientModal';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Paper from '@material-ui/core/Paper';
@@ -18,7 +18,7 @@ class ClientsPage extends Component {
   	}
 
 	render() {
-		const { clients, onOpenNewClientModal } = this.props;
+		const { clients, onOpenClientModal } = this.props;
 		return (
 			<div>
 				<Paper>
@@ -26,7 +26,7 @@ class ClientsPage extends Component {
 						<div style={{flexGrow: 1}}>
 							<Grid container>
 								<Grid item xs align='left'>
-									<Fab size="small" color="secondary" aria-label="Add"  onClick={onOpenNewClientModal}><AddIcon /></Fab>
+									<Fab size="small" color="secondary" aria-label="Add"  onClick={onOpenClientModal}><AddIcon /></Fab>
 								</Grid>
 								<Grid item xs align='center'>
 									<Typography variant="h5" gutterBottom>Clients</Typography>
@@ -38,7 +38,7 @@ class ClientsPage extends Component {
 						</div>
 					</ClientList>
 				</Paper>
-				<NewClientModal />
+				<ClientModal />
 			</div>
     )
   }
@@ -52,7 +52,7 @@ ClientsPage.propTypes = {
 		phone: PropTypes.string.isRequired
 	})),
 	searchClients: PropTypes.func.isRequired,
-	onOpenNewClientModal: PropTypes.func.isRequired,
+	onOpenClientModal: PropTypes.func.isRequired,
 };
 
 ClientsPage.defaultProps = {
@@ -66,7 +66,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({searchClients, openNewClientModal}, dispatch);
+  return bindActionCreators({searchClients, openClientModal}, dispatch);
 };
 
 const mergeProps = (stateProps, dispatchProps, props) => {
@@ -74,7 +74,7 @@ const mergeProps = (stateProps, dispatchProps, props) => {
 		...props,
 		...stateProps,
 		...dispatchProps,
-		onOpenNewClientModal: dispatchProps.openNewClientModal,
+		onOpenClientModal: dispatchProps.openClientModal,
 	}
 };
 

@@ -1,7 +1,7 @@
 import {
-    getNewClientEmail,
-    getNewClientName,
-    getNewClientPhone,
+    getClientEmail,
+    getClientName,
+    getClientPhone,
 } from "../selectors";
 
 import {
@@ -13,11 +13,11 @@ import {
     ADD_CLIENT_FAILED,
     SEARCH_CLIENTS_SUCCEEDED,
     SEARCH_CLIENTS_FAILED,
-    UPDATE_NEW_CLIENT_NAME,
-    UPDATE_NEW_CLIENT_PHONE,
-    UPDATE_NEW_CLIENT_EMAIL,
-    OPEN_NEW_CLIENT_MODAL,
-    CLOSE_NEW_CLIENT_MODAL
+    UPDATE_CLIENT_NAME,
+    UPDATE_CLIENT_PHONE,
+    UPDATE_CLIENT_EMAIL,
+    OPEN_CLIENT_MODAL,
+    CLOSE_CLIENT_MODAL
 }
 from "../actions";
 
@@ -44,9 +44,9 @@ export function searchClients() {
 export function addClient() {
     return (dispatch, getState) => {
         const token = getToken(getState());
-        const name = getNewClientName(getState());
-        const email = getNewClientEmail(getState());
-        const phone = getNewClientPhone(getState());
+        const name = getClientName(getState());
+        const email = getClientEmail(getState());
+        const phone = getClientPhone(getState());
         fetch('/coach_api/clients', {
             method: 'POST',
             headers: {
@@ -64,7 +64,7 @@ export function addClient() {
         }).then(response => response.json())
             .then(json => {
                 dispatch({type: ADD_CLIENT_SUCCEEDED, payload: json.client});
-                dispatch({type: CLOSE_NEW_CLIENT_MODAL});
+                dispatch({type: CLOSE_CLIENT_MODAL});
             })
             .catch(error => {
                 dispatch({type: ADD_CLIENT_FAILED, payload: "Error occurred adding this client" })
@@ -72,22 +72,22 @@ export function addClient() {
     }
 }
 
-export function updateNewClientName(name='') {
-    return { type: UPDATE_NEW_CLIENT_NAME, payload: name }
+export function updateClientName(name='') {
+    return { type: UPDATE_CLIENT_NAME, payload: name }
 }
 
-export function updateNewClientEmail(email='') {
-    return { type: UPDATE_NEW_CLIENT_EMAIL, payload: email }
+export function updateClientEmail(email='') {
+    return { type: UPDATE_CLIENT_EMAIL, payload: email }
 }
 
-export function updateNewClientPhone(phone='') {
-    return { type: UPDATE_NEW_CLIENT_PHONE, payload: phone }
+export function updateClientPhone(phone='') {
+    return { type: UPDATE_CLIENT_PHONE, payload: phone }
 }
 
-export function openNewClientModal() {
-    return {type: OPEN_NEW_CLIENT_MODAL};
+export function openClientModal() {
+    return {type: OPEN_CLIENT_MODAL};
 }
 
-export function closeNewClientModal() {
-    return {type: CLOSE_NEW_CLIENT_MODAL};
+export function closeClientModal() {
+    return {type: CLOSE_CLIENT_MODAL};
 }

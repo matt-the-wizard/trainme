@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {getNewClientModalOpen, getNewClientName, getNewClientEmail, getNewClientPhone, getErrorMessage, showErrorMessage} from '../selectors';
-import { addClient, updateNewClientName, updateNewClientPhone, updateNewClientEmail, closeNewClientModal } from '../actionCreators';
+import {getClientModalOpen, getClientName, getClientEmail, getClientPhone, getErrorMessage, showErrorMessage} from '../selectors';
+import { addClient, updateClientName, updateClientPhone, updateClientEmail, closeClientModal } from '../actionCreators';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import ClientForm from '../components/ClientForm';
@@ -11,7 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-class NewClientModal extends Component {
+class ClientModal extends Component {
     render() {
         const { name, email, phone, onNameChange, onEmailChange, onPhoneChange, onSubmit, onClose, open, showErrorMessage, errorMessage } = this.props;
         return (
@@ -35,7 +35,7 @@ class NewClientModal extends Component {
     }
 }
 
-NewClientModal.propTypes = {
+ClientModal.propTypes = {
     name: PropTypes.string,
     email: PropTypes.string,
     phone: PropTypes.string,
@@ -49,7 +49,7 @@ NewClientModal.propTypes = {
     showErrorMessage: PropTypes.bool,
 };
 
-NewClientModal.defaultProps = {
+ClientModal.defaultProps = {
     name: '',
     email: '',
     phone: '',
@@ -59,10 +59,10 @@ NewClientModal.defaultProps = {
 
 const mapStateToProps = (state) => {
     return {
-        name: getNewClientName(state),
-        email: getNewClientEmail(state),
-        phone: getNewClientPhone(state),
-        open: getNewClientModalOpen(state),
+        name: getClientName(state),
+        email: getClientEmail(state),
+        phone: getClientPhone(state),
+        open: getClientModalOpen(state),
         errorMessage: getErrorMessage(state),
         showErrorMessage: showErrorMessage(state),
     }
@@ -70,26 +70,26 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        updateNewClientName,
-        updateNewClientPhone,
-        updateNewClientEmail,
+        updateClientName,
+        updateClientPhone,
+        updateClientEmail,
         addClient,
-        closeNewClientModal,
+        closeClientModal,
     }, dispatch);
 };
 
 const mergeProps = (stateProps, dispatchProps, props) => ({
     ...props,
     ...stateProps,
-    onNameChange: (evt, name) => dispatchProps.updateNewClientName(name),
-    onEmailChange: (evt, email) => dispatchProps.updateNewClientEmail(email),
-    onPhoneChange: (evt, phone) => dispatchProps.updateNewClientPhone(phone),
+    onNameChange: (evt, name) => dispatchProps.updateClientName(name),
+    onEmailChange: (evt, email) => dispatchProps.updateClientEmail(email),
+    onPhoneChange: (evt, phone) => dispatchProps.updateClientPhone(phone),
     onSubmit: dispatchProps.addClient,
-    onClose: dispatchProps.closeNewClientModal,
+    onClose: dispatchProps.closeClientModal,
 });
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
     mergeProps,
-)(NewClientModal);
+)(ClientModal);
