@@ -11,26 +11,33 @@ module CoachApi
     end
 
     def create
-      params.require(:client).permit(:name, :phone, :email)
-      service_params = {
-        name: params[:client][:name],
-        email: params[:client][:email],
-        phone: params[:client][:phone],
-        coach: current_user
-      }
-      response = ClientService.new(service_params).create_client
+      response = ClientCreationService.new(
+        _client_params.merge(coach: current_user)
+      ).create_client
 
       if response.errors?
         render json: { errors: response.errors }, status: :conflict
       else
-        render json: { client: response.payload }, status: :ok
+        render json: { client: response.payload.as_json(except: [:created_at, :updated_at, :user_id]) }, status: :ok
+      end
+    end
+
+    def update
+      response = ClientUpdateService.new(
+        _client_params.merge(client: Client.find(params[:id]))
+      ).update_client
+
+      if response.errors?
+        render json: { errors: response.errors }, status: :conflict
+      else
+        render json: { client: response.payload.as_json(except: [:created_at, :updated_at, :user_id]) }, status: :ok
       end
     end
 
     private
 
     def _client_params
-      params.require(:client).permit(:name)
+      params.require(:client).permit(:name, :phone, :email)
     end
   end
 end

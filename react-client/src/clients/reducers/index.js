@@ -72,15 +72,32 @@ export default function(state = {
                 },
             };
         case OPEN_CLIENT_MODAL:
-            return {
-                ...state,
-                clientModalOpen: true,
-            };
+            if (Boolean(action.payload)) {
+                const client = action.payload;
+                return {
+                    ...state,
+                    client: {
+                        name: client.name,
+                        email: client.email,
+                        phone: client.phone,
+                        id: client.id,
+                    },
+                    clientModalOpen: true,
+                };
+            }
+            else {
+                return {
+                    ...state,
+                    client: {},
+                    clientModalOpen: true,
+                };
+            }
         case CLOSE_CLIENT_MODAL:
             return {
                 ...state,
                 clientModalOpen: false,
                 client: {
+                    id: '',
                     name: '',
                     email: '',
                     phone: '',

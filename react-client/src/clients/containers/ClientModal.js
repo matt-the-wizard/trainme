@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {getClientModalOpen, getClientName, getClientEmail, getClientPhone, getErrorMessage, showErrorMessage} from '../selectors';
-import { addClient, updateClientName, updateClientPhone, updateClientEmail, closeClientModal } from '../actionCreators';
+import { saveClient, updateClientName, updateClientPhone, updateClientEmail, closeClientModal } from '../actionCreators';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import ClientForm from '../components/ClientForm';
@@ -13,22 +13,35 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 class ClientModal extends Component {
     render() {
-        const { name, email, phone, onNameChange, onEmailChange, onPhoneChange, onSubmit, onClose, open, showErrorMessage, errorMessage } = this.props;
+        const {
+            name,
+            email,
+            phone,
+            onNameChange,
+            onEmailChange,
+            onPhoneChange,
+            onSubmit,
+            onClose,
+            open,
+            showErrorMessage,
+            errorMessage,
+        } = this.props;
+
         return (
             <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                <DialogTitle id="alert-dialog-title">{"New Client"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">Client</DialogTitle>
                     <DialogContent>
                         <ClientForm name={name} email={email} phone={phone}
                                     onNameChange={onNameChange} onEmailChange={onEmailChange} onPhoneChange={onPhoneChange} />
                         <br />{showErrorMessage && errorMessage}
                     </DialogContent>
                     <DialogActions>
-                    <Button variant={"contained"} color="primary" onClick={onSubmit}>
-                        Confirm
-                    </Button>
-                    <Button color="primary" onClick={onClose}>
-                        Cancel
-                    </Button>
+                        <Button variant={"contained"} color="primary" onClick={onSubmit}>
+                            Confirm
+                        </Button>
+                        <Button color="primary" onClick={onClose}>
+                            Cancel
+                        </Button>
                     </DialogActions>
             </Dialog>
         )
@@ -73,7 +86,7 @@ const mapDispatchToProps = (dispatch) => {
         updateClientName,
         updateClientPhone,
         updateClientEmail,
-        addClient,
+        saveClient,
         closeClientModal,
     }, dispatch);
 };
@@ -84,7 +97,7 @@ const mergeProps = (stateProps, dispatchProps, props) => ({
     onNameChange: (evt, name) => dispatchProps.updateClientName(name),
     onEmailChange: (evt, email) => dispatchProps.updateClientEmail(email),
     onPhoneChange: (evt, phone) => dispatchProps.updateClientPhone(phone),
-    onSubmit: dispatchProps.addClient,
+    onSubmit: dispatchProps.saveClient,
     onClose: dispatchProps.closeClientModal,
 });
 

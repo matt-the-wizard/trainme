@@ -18,15 +18,15 @@ class ClientsPage extends Component {
   	}
 
 	render() {
-		const { clients, onOpenClientModal } = this.props;
+		const { clients, openClientModal } = this.props;
 		return (
 			<div>
 				<Paper>
-					<ClientList clients={clients}>
+					<ClientList clients={clients} updateClient={openClientModal}>
 						<div style={{flexGrow: 1}}>
 							<Grid container>
 								<Grid item xs align='left'>
-									<Fab size="small" color="secondary" aria-label="Add"  onClick={onOpenClientModal}><AddIcon /></Fab>
+									<Fab size="small" color="secondary" aria-label="Add"  onClick={openClientModal}><AddIcon /></Fab>
 								</Grid>
 								<Grid item xs align='center'>
 									<Typography variant="h5" gutterBottom>Clients</Typography>
@@ -52,7 +52,7 @@ ClientsPage.propTypes = {
 		phone: PropTypes.string.isRequired
 	})),
 	searchClients: PropTypes.func.isRequired,
-	onOpenClientModal: PropTypes.func.isRequired,
+	openClientModal: PropTypes.func.isRequired,
 };
 
 ClientsPage.defaultProps = {
@@ -69,13 +69,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({searchClients, openClientModal}, dispatch);
 };
 
-const mergeProps = (stateProps, dispatchProps, props) => {
-	return {
-		...props,
-		...stateProps,
-		...dispatchProps,
-		onOpenClientModal: dispatchProps.openClientModal,
-	}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ClientsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ClientsPage);

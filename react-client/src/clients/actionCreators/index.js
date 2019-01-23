@@ -2,6 +2,7 @@ import {
     getClientEmail,
     getClientName,
     getClientPhone,
+    getClientId,
 } from "../selectors";
 
 import {
@@ -41,26 +42,35 @@ export function searchClients() {
     }
 }
 
-export function addClient() {
+export function saveClient() {
     return (dispatch, getState) => {
         const token = getToken(getState());
         const name = getClientName(getState());
         const email = getClientEmail(getState());
         const phone = getClientPhone(getState());
-        fetch('/coach_api/clients', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
-                token: token,
+        const clientId = getClientId(getState());
+
+        const method = Boolean(clientId) ? "PUT" : "POST";
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`,
+            token: token,
+        };
+        const body = JSON.stringify({
+            client: {
+                id: clientId,
+                name: name,
+                email: email,
+                phone: phone,
             },
-            body: JSON.stringify({
-                client: {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                },
-            }),
+        });
+
+        const url = Boolean(clientId) ? `/coach_api/clients/${clientId}` : '/coach_api/clients';
+
+        fetch(url, {
+            headers: headers,
+            body: body,
+            method: method,
         }).then(response => response.json())
             .then(json => {
                 dispatch({type: ADD_CLIENT_SUCCEEDED, payload: json.client});
@@ -84,8 +94,8 @@ export function updateClientPhone(phone='') {
     return { type: UPDATE_CLIENT_PHONE, payload: phone }
 }
 
-export function openClientModal() {
-    return {type: OPEN_CLIENT_MODAL};
+export function openClientModal(evt, client) {
+    return {type: OPEN_CLIENT_MODAL, payload: client};
 }
 
 export function closeClientModal() {
