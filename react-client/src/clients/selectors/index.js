@@ -23,8 +23,9 @@ export const getClientsOrderedByName = createSelector(
 export const getErrorMessage = state => state.CLIENTS.errorMessage;
 export const showErrorMessage = createSelector([getErrorMessage], (message) => Boolean(message));
 
-export const getNewClientModalOpen = state => state.CLIENTS.newClientModalOpen;
+export const getClientModalOpen = state => state.CLIENTS.clientModalOpen;
 
-export const getNewClientName = state => state.CLIENTS.newClient.name;
-export const getNewClientEmail = state => state.CLIENTS.newClient.email;
-export const getNewClientPhone = state => state.CLIENTS.newClient.phone;
+export const getClientName = state => state.CLIENTS.client.name;
+export const getClientEmail = state => state.CLIENTS.client.email;
+export const getClientPhone = state => state.CLIENTS.client.phone;
+export const getClientId = state => state.CLIENTS.client.id;

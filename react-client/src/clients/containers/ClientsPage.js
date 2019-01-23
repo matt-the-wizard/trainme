@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getErrorMessage, showErrorMessage, getClientsOrderedByName} from '../selectors';
-import { searchClients, openNewClientModal } from '../actionCreators';
+import {getClientsOrderedByName} from '../selectors';
+import { searchClients, openClientModal } from '../actionCreators';
 import ClientList from '../components/ClientList';
-import NewClientModal from './NewClientModal';
+import ClientModal from './ClientModal';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 class ClientsPage extends Component {
 	componentDidMount() {
@@ -15,14 +18,27 @@ class ClientsPage extends Component {
   	}
 
 	render() {
-		const { clients, showErrorMessage, errorMessage, onOpenNewClientModal } = this.props;
+		const { clients, openClientModal } = this.props;
 		return (
 			<div>
-				{showErrorMessage && errorMessage}
-				<ClientList clients={clients}>
-					<Fab size="small" color="secondary" aria-label="Add" onClick={onOpenNewClientModal}><AddIcon /></Fab>
-					<NewClientModal />
-				</ClientList>
+				<Paper>
+					<ClientList clients={clients} updateClient={openClientModal}>
+						<div style={{flexGrow: 1}}>
+							<Grid container>
+								<Grid item xs align='left'>
+									<Fab size="small" color="secondary" aria-label="Add"  onClick={openClientModal}><AddIcon /></Fab>
+								</Grid>
+								<Grid item xs align='center'>
+									<Typography variant="h5" gutterBottom>Clients</Typography>
+								</Grid>
+								<Grid item xs align='right'>
+									&nbsp;
+								</Grid>
+							</Grid>
+						</div>
+					</ClientList>
+				</Paper>
+				<ClientModal />
 			</div>
     )
   }
@@ -36,35 +52,21 @@ ClientsPage.propTypes = {
 		phone: PropTypes.string.isRequired
 	})),
 	searchClients: PropTypes.func.isRequired,
-	onOpenNewClientModal: PropTypes.func.isRequired,
-	errorMessage: PropTypes.string,
-	showErrorMessage: PropTypes.bool.isRequired,
+	openClientModal: PropTypes.func.isRequired,
 };
 
 ClientsPage.defaultProps = {
 	clients: [],
-	errorMessage: '',
 };
 
 const mapStateToProps = (state) => {
 	return {
 		clients: getClientsOrderedByName(state),
-		errorMessage: getErrorMessage(state),
-		showErrorMessage: showErrorMessage(state),
 	}
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({searchClients, openNewClientModal}, dispatch);
+  return bindActionCreators({searchClients, openClientModal}, dispatch);
 };
 
-const mergeProps = (stateProps, dispatchProps, props) => {
-	return {
-		...props,
-		...stateProps,
-		...dispatchProps,
-		onOpenNewClientModal: dispatchProps.openNewClientModal,
-	}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ClientsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ClientsPage);

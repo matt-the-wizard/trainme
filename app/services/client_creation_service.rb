@@ -1,6 +1,6 @@
 require_relative '../lib/util'
 
-class ClientService < BaseService
+class ClientCreationService < BaseService
   def initialize(data)
     super(data)
     _validate_params

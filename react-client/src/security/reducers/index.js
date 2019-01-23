@@ -7,6 +7,7 @@ import {
 } from '../actions';
 
 export default function(state = {
+    token: '',
 }, action) {
     switch (action.type) {
         case UPDATE_USERNAME:

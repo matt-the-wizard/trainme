@@ -3,16 +3,16 @@ import {
     SEARCH_CLIENTS_FAILED,
     ADD_CLIENT_SUCCEEDED,
     ADD_CLIENT_FAILED,
-    OPEN_NEW_CLIENT_MODAL,
-    CLOSE_NEW_CLIENT_MODAL,
-    UPDATE_NEW_CLIENT_NAME,
-    UPDATE_NEW_CLIENT_EMAIL,
-    UPDATE_NEW_CLIENT_PHONE
+    OPEN_CLIENT_MODAL,
+    CLOSE_CLIENT_MODAL,
+    UPDATE_CLIENT_NAME,
+    UPDATE_CLIENT_EMAIL,
+    UPDATE_CLIENT_PHONE
 } from '../actions';
 
 export default function(state = {
     clients: {},
-    newClient: {},
+    client: {},
 }, action) {
     switch (action.type) {
         case SEARCH_CLIENTS_SUCCEEDED:
@@ -35,52 +35,69 @@ export default function(state = {
                     ...state.clients,
                     [action.payload.id]: action.payload,
                 },
-                newClient: {
+                client: {
                     name: '',
                     email: '',
                     phone: '',
                 },
-                newClientModalOpen: false,
+                clientModalOpen: false,
             };
         case ADD_CLIENT_FAILED:
             return {
                 ...state,
                 errorMessage: action.payload,
             };
-        case UPDATE_NEW_CLIENT_NAME:
+        case UPDATE_CLIENT_NAME:
             return {
                 ...state,
-                newClient: {
-                    ...state.newClient,
+                client: {
+                    ...state.client,
                     name: action.payload,
                 },
             };
-        case UPDATE_NEW_CLIENT_PHONE:
+        case UPDATE_CLIENT_PHONE:
             return {
                 ...state,
-                newClient: {
-                    ...state.newClient,
+                client: {
+                    ...state.client,
                     phone: action.payload,
                 },
             };
-        case UPDATE_NEW_CLIENT_EMAIL:
+        case UPDATE_CLIENT_EMAIL:
             return {
                 ...state,
-                newClient: {
-                    ...state.newClient,
+                client: {
+                    ...state.client,
                     email: action.payload,
                 },
             };
-        case OPEN_NEW_CLIENT_MODAL:
+        case OPEN_CLIENT_MODAL:
+            if (Boolean(action.payload)) {
+                const client = action.payload;
+                return {
+                    ...state,
+                    client: {
+                        name: client.name,
+                        email: client.email,
+                        phone: client.phone,
+                        id: client.id,
+                    },
+                    clientModalOpen: true,
+                };
+            }
+            else {
+                return {
+                    ...state,
+                    client: {},
+                    clientModalOpen: true,
+                };
+            }
+        case CLOSE_CLIENT_MODAL:
             return {
                 ...state,
-                newClientModalOpen: true,
-            };
-        case CLOSE_NEW_CLIENT_MODAL:
-            return {
-                ...state,
-                newClientModalOpen: false,
-                newClient: {
+                clientModalOpen: false,
+                client: {
+                    id: '',
                     name: '',
                     email: '',
                     phone: '',

@@ -23,7 +23,7 @@ const ClientForm = (props) => {
                 <PersonIcon />
             </Avatar>
             <div className={classes.form}>
-                <TextField label="Name" placeholder="New Client" type="text" value={name} fullWidth
+                <TextField label="Name" placeholder="Client" type="text" value={name} fullWidth
                            onChange={(evt) => onNameChange(evt, evt.target.value)}/>
 
                 <TextField label="Email" placeholder="client@gmail.com" type="text" value={email} fullWidth
