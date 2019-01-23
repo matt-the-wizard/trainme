@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import Fab from '@material-ui/core/Fab';
 import PersonIcon from '@material-ui/icons/Person';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import Mailto from 'react-protected-mailto';
 import red from '@material-ui/core/colors/red';
@@ -32,7 +33,7 @@ const styles = theme => ({
 });
 
 const ClientList = (props) => {
-	const { classes, updateClient, showEdit } = props;
+	const { classes, updateClient, deleteClient, showEdit, showDelete } = props;
 	return (
 		<div>
 			<List className={classes.root}>
@@ -61,6 +62,9 @@ const ClientList = (props) => {
 						<Fab className={classes.edit} onClick={(evt) => updateClient(evt, client)}>
 							<EditIcon />
 						</Fab>}
+						{showDelete && <Fab className={classes.delete} onClick={(evt) => deleteClient(evt, client)}>
+							<DeleteIcon />
+						</Fab>}
 					</ListItem>
 				))}
 			</List>
@@ -77,14 +81,18 @@ ClientList.propTypes = {
 	})),
 	classes: PropTypes.object.isRequired,
 	updateClient: PropTypes.func.isRequired,
+	deleteClient: PropTypes.func.isRequired,
 	showEdit: PropTypes.bool,
+	showDelete: PropTypes.bool,
 };
 
 ClientList.defaultProps = {
 	clients: [],
 	classes: {},
 	updateClient: () => {},
+	deleteClient: () => {},
 	showEdit: true,
+	showDelete: true,
 };
 
 export default withStyles(styles)(ClientList);

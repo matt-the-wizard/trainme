@@ -10,15 +10,19 @@ import {
 } from "../../security/selectors";
 
 import {
-    ADD_CLIENT_SUCCEEDED,
-    ADD_CLIENT_FAILED,
+    SAVE_CLIENT_SUCCEEDED,
+    SAVE_CLIENT_FAILED,
     SEARCH_CLIENTS_SUCCEEDED,
     SEARCH_CLIENTS_FAILED,
     UPDATE_CLIENT_NAME,
     UPDATE_CLIENT_PHONE,
     UPDATE_CLIENT_EMAIL,
     OPEN_CLIENT_MODAL,
-    CLOSE_CLIENT_MODAL
+    OPEN_ARCHIVE_MODAL,
+    CLOSE_CLIENT_MODAL,
+    CLOSE_ARCHIVE_MODAL,
+    ARCHIVE_CLIENT_SUCCEEDED,
+    ARCHIVE_CLIENT_FAILED,
 }
 from "../actions";
 
@@ -73,11 +77,36 @@ export function saveClient() {
             method: method,
         }).then(response => response.json())
             .then(json => {
-                dispatch({type: ADD_CLIENT_SUCCEEDED, payload: json.client});
+                dispatch({type: SAVE_CLIENT_SUCCEEDED, payload: json.client});
                 dispatch({type: CLOSE_CLIENT_MODAL});
             })
             .catch(error => {
-                dispatch({type: ADD_CLIENT_FAILED, payload: "Error occurred adding this client" })
+                dispatch({type: SAVE_CLIENT_FAILED, payload: "Error occurred adding this client" })
+            });
+    }
+}
+
+export function archiveClient() {
+    return (dispatch, getState) => {
+        const token = getToken(getState());
+        const clientId = getClientId(getState());
+        const method = "PUT";
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`,
+            token: token,
+        };
+        const url = `/coach_api/clients/${clientId}/archive`;
+
+        fetch(url, {
+            headers: headers,
+            method: method,
+        }).then(response => response.json())
+            .then(json => {
+                dispatch({type: ARCHIVE_CLIENT_SUCCEEDED, payload: json.client});
+            })
+            .catch(error => {
+                dispatch({type: ARCHIVE_CLIENT_FAILED, payload: "Error occurred archiving this client" })
             });
     }
 }
@@ -100,4 +129,12 @@ export function openClientModal(evt, client) {
 
 export function closeClientModal() {
     return {type: CLOSE_CLIENT_MODAL};
+}
+
+export function openArchiveModal(evt, client) {
+    return {type: OPEN_ARCHIVE_MODAL, payload: client};
+}
+
+export function closeArchiveModal() {
+    return {type: CLOSE_ARCHIVE_MODAL};
 }

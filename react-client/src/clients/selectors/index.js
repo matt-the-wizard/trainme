@@ -29,3 +29,5 @@ export const getClientName = state => state.CLIENTS.client.name;
 export const getClientEmail = state => state.CLIENTS.client.email;
 export const getClientPhone = state => state.CLIENTS.client.phone;
 export const getClientId = state => state.CLIENTS.client.id;
+
+export const getArchiveModalOpen = state => state.CLIENTS.archiveModalOpen;
