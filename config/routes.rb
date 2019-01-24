@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     post '/login' => 'sessions#create'
     delete '/logout' => 'sessions#destroy'
 
-    resources :clients, only: [:index, :show, :create, :update]
+    resources :clients, only: [:index, :show, :create, :update] do
+      put :archive, on: :member
+    end
 
     get '/profile' => 'users#profile'
   end

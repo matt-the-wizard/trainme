@@ -8,6 +8,8 @@ import {
 
 export default function(state = {
     token: '',
+    username: '',
+    password:'',
 }, action) {
     switch (action.type) {
         case UPDATE_USERNAME:

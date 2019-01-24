@@ -14,7 +14,8 @@ class ClientCreationService < BaseService
         name: @name,
         coach: @coach,
         email: @email,
-        phone: @phone
+        phone: @phone,
+        archived: false
       )
       if client.persisted?
         @response.payload = client

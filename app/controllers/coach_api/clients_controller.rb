@@ -1,7 +1,7 @@
 module CoachApi
   class ClientsController < ApiController
     def index
-      clients = Client.where(coach: current_user).order(:name)
+      clients = Client.where(coach: current_user, archived: false).order(:name)
       render json: { clients: clients }, status: :ok
     end
 
@@ -31,6 +31,18 @@ module CoachApi
         render json: { errors: response.errors }, status: :conflict
       else
         render json: { client: response.payload.as_json(except: [:created_at, :updated_at, :user_id]) }, status: :ok
+      end
+    end
+
+    def archive
+      response = ClientArchiveService.new(
+        client: Client.find(params[:id])
+      ).archive_client
+
+      if response.errors?
+        render json: { errors: response.errors }, status: :conflict
+      else
+        render json: { client: response.payload.as_json(except: [:created_at, :updated_at, :user_id])}, status: :ok
       end
     end
 

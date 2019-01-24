@@ -1,18 +1,30 @@
 import {
+    ARCHIVE_CLIENT_SUCCEEDED,
+    ARCHIVE_CLIENT_FAILED,
+    OPEN_CLIENT_MODAL,
+    OPEN_ARCHIVE_MODAL,
+    CLOSE_CLIENT_MODAL,
+    CLOSE_ARCHIVE_MODAL,
     SEARCH_CLIENTS_SUCCEEDED,
     SEARCH_CLIENTS_FAILED,
-    ADD_CLIENT_SUCCEEDED,
-    ADD_CLIENT_FAILED,
-    OPEN_CLIENT_MODAL,
-    CLOSE_CLIENT_MODAL,
+    SAVE_CLIENT_SUCCEEDED,
+    SAVE_CLIENT_FAILED,
     UPDATE_CLIENT_NAME,
     UPDATE_CLIENT_EMAIL,
-    UPDATE_CLIENT_PHONE
+    UPDATE_CLIENT_PHONE,
 } from '../actions';
 
 export default function(state = {
     clients: {},
-    client: {},
+    client: {
+        id: '',
+        name: '',
+        email: '',
+        phone: '',
+    },
+    errorMessage: '',
+    clientModalOpen: false,
+    archiveModalOpen: false,
 }, action) {
     switch (action.type) {
         case SEARCH_CLIENTS_SUCCEEDED:
@@ -21,28 +33,25 @@ export default function(state = {
                 clients: action.payload.reduce((previous, current) => (
                     {...previous, [current.id]: current }
                 ), {}),
-                errorMessage: null,
+                errorMessage: '',
             };
         case SEARCH_CLIENTS_FAILED:
             return {
                 ...state,
                 errorMessage: action.payload,
             };
-        case ADD_CLIENT_SUCCEEDED:
+        case SAVE_CLIENT_SUCCEEDED:
             return {
                 ...state,
                 clients: {
                     ...state.clients,
                     [action.payload.id]: action.payload,
                 },
-                client: {
-                    name: '',
-                    email: '',
-                    phone: '',
-                },
+                client: {},
                 clientModalOpen: false,
+                errorMessage: ''
             };
-        case ADD_CLIENT_FAILED:
+        case SAVE_CLIENT_FAILED:
             return {
                 ...state,
                 errorMessage: action.payload,
@@ -77,6 +86,7 @@ export default function(state = {
                 return {
                     ...state,
                     client: {
+                        ...state.client,
                         name: client.name,
                         email: client.email,
                         phone: client.phone,
@@ -96,12 +106,47 @@ export default function(state = {
             return {
                 ...state,
                 clientModalOpen: false,
+                client: {},
+                errorMessage: ''
+            };
+        case OPEN_ARCHIVE_MODAL:
+            return {
+                ...state,
                 client: {
+                    ...state.client,
+                    id: action.payload.id,
+                    name: action.payload.name,
+                },
+                archiveModalOpen: true,
+            };
+        case CLOSE_ARCHIVE_MODAL:
+            return {
+                ...state,
+                archiveModalOpen: false,
+                client: {
+                    ...state.client,
                     id: '',
                     name: '',
-                    email: '',
-                    phone: '',
                 },
+                errorMessage: ''
+            };
+        case ARCHIVE_CLIENT_SUCCEEDED:
+            let  {[action.payload.id]: deletedClient, ...newClientState} = state.clients;
+            // Might want to do something with the deleted client?
+            return {
+                clients: newClientState,
+                archiveModalOpen: false,
+                client: {
+                    ...state.client,
+                    id: '',
+                    name: '',
+                },
+                errorMessage: ''
+            };
+        case ARCHIVE_CLIENT_FAILED:
+            return {
+                ...state,
+                errorMessage: action.payload,
             };
         default:
             return state;
