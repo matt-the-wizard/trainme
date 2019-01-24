@@ -6,7 +6,7 @@ Ruby Version: 2.5.3
 
 Rails Version: 2.5.3
 
-NPM Version: 6.5.0
+Node Version: 10.15.0
 
 ## Setup
 
@@ -23,7 +23,7 @@ Setup the rails api from the root directory
 
 ## Running the Application
 
-`bundle exec foreman start`
+`bundle exec foreman start -f Procfile.dev`
 
 NOTE: Recommended foreman is not in the gemfile, so you may have to install this outside of bundler. 
 
