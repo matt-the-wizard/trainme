@@ -22,13 +22,16 @@ const styles = theme => ({
 		display: 'inline',
 	},
 	avatar: {
+		margin: theme.spacing.unit,
 		backgroundColor: theme.palette.primary.main,
 	},
 	edit: {
+		margin: theme.spacing.unit,
 		backgroundColor: theme.palette.secondary.main,
 	},
 	delete: {
-		backgroundColor: red,
+		margin: theme.spacing.unit,
+		backgroundColor: red["600"],
 	}
 });
 

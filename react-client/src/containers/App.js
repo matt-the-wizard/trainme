@@ -20,6 +20,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
+import AlarmIcon from '@material-ui/icons/Alarm';
 
 const drawerWidth = 240;
 
@@ -150,6 +151,10 @@ class App extends Component {
 						<ListItem button key='clients-nav'>
 							<ListItemIcon><PersonIcon/></ListItemIcon>
 							<ListItemText primary='Clients' />
+						</ListItem>
+						<ListItem button key='appointments-nav'>
+							<ListItemIcon><AlarmIcon/></ListItemIcon>
+							<ListItemText primary='Appointments' secondary='Coming Soon!' />
 						</ListItem>
 					</List>
 				</Drawer>
