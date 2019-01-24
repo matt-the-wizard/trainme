@@ -53,6 +53,7 @@ ArchiveModal.propTypes = {
 
 ArchiveModal.defaultProps = {
     open: false,
+    name: '',
     showErrorMessage: false,
 };
 

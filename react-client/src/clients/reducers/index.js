@@ -16,7 +16,15 @@ import {
 
 export default function(state = {
     clients: {},
-    client: {},
+    client: {
+        id: '',
+        name: '',
+        email: '',
+        phone: '',
+    },
+    errorMessage: '',
+    clientModalOpen: false,
+    archiveModalOpen: false,
 }, action) {
     switch (action.type) {
         case SEARCH_CLIENTS_SUCCEEDED:
@@ -25,7 +33,7 @@ export default function(state = {
                 clients: action.payload.reduce((previous, current) => (
                     {...previous, [current.id]: current }
                 ), {}),
-                errorMessage: null,
+                errorMessage: '',
             };
         case SEARCH_CLIENTS_FAILED:
             return {
@@ -41,6 +49,7 @@ export default function(state = {
                 },
                 client: {},
                 clientModalOpen: false,
+                errorMessage: ''
             };
         case SAVE_CLIENT_FAILED:
             return {
@@ -98,6 +107,7 @@ export default function(state = {
                 ...state,
                 clientModalOpen: false,
                 client: {},
+                errorMessage: ''
             };
         case OPEN_ARCHIVE_MODAL:
             return {
@@ -115,17 +125,23 @@ export default function(state = {
                 archiveModalOpen: false,
                 client: {
                     ...state.client,
-                    id: null,
-                }
+                    id: '',
+                    name: '',
+                },
+                errorMessage: ''
             };
         case ARCHIVE_CLIENT_SUCCEEDED:
-            // THIS IS BROKEN
+            let  {[action.payload.id]: deletedClient, ...newClientState} = state.clients;
+            // Might want to do something with the deleted client?
             return {
-                clients: {
-                    ...state.clients,
-                    [action.payload.id]: {t},
-                },
+                clients: newClientState,
                 archiveModalOpen: false,
+                client: {
+                    ...state.client,
+                    id: '',
+                    name: '',
+                },
+                errorMessage: ''
             };
         case ARCHIVE_CLIENT_FAILED:
             return {
