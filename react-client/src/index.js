@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 import ClientReducer from './clients/reducers';
 import SecurityReducer from './security/reducers';
+import ServiceReducer from './services/reducers';
 import * as serviceWorker from './serviceWorker';
 import {createMuiTheme} from "@material-ui/core";
 import orange from "@material-ui/core/colors/orange";
@@ -17,7 +18,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 const store = createStore(
   combineReducers({
 	  CLIENTS: ClientReducer,
-	  SECURITY: SecurityReducer
+	  SECURITY: SecurityReducer,
+      SERVICES: ServiceReducer,
   }), {}, compose(applyMiddleware(thunk)),
 );
 

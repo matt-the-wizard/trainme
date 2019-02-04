@@ -1,7 +1,8 @@
-import React, { Fragment, Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ClientsPage from '../clients/containers/ClientsPage';
+import ServicesPage from '../services/containers/ServicesPage';
 import LoginFormPage from "../security/containers/LoginFormPage";
 import PrivateRoute from '../security/components/PrivateRoute';
 import { withStyles } from '@material-ui/core/styles';
@@ -21,6 +22,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
 import AlarmIcon from '@material-ui/icons/Alarm';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const drawerWidth = 240;
 
@@ -104,70 +106,75 @@ class App extends Component {
 		const { open } = this.state;
 
 		return (
-			<div className={classes.root}>
-				<AppBar
-					position="fixed"
-					className={classNames(classes.appBar, {
-						[classes.appBarShift]: open,
-					})}
-				>
-					<Toolbar disableGutters={!open}>
-						<IconButton
-							color="inherit"
-							aria-label="Open drawer"
-							onClick={this.handleDrawerOpen}
-							className={classNames(classes.menuButton, {
-								[classes.hide]: open,
-							})}
-						>
-							<MenuIcon />
-						</IconButton>
-						<Typography variant="h6" color="inherit" noWrap>
-							Train Me
-						</Typography>
-					</Toolbar>
-				</AppBar>
-				<Drawer
-					variant="permanent"
-					className={classNames(classes.drawer, {
-						[classes.drawerOpen]: open,
-						[classes.drawerClose]: !open,
-					})}
-					classes={{
-						paper: classNames({
+			<Router>
+				<div className={classes.root}>
+					<AppBar
+						position="fixed"
+						className={classNames(classes.appBar, {
+							[classes.appBarShift]: open,
+						})}
+					>
+						<Toolbar disableGutters={!open}>
+							<IconButton
+								color="inherit"
+								aria-label="Open drawer"
+								onClick={this.handleDrawerOpen}
+								className={classNames(classes.menuButton, {
+									[classes.hide]: open,
+								})}
+							>
+								<MenuIcon />
+							</IconButton>
+							<Typography variant="h6" color="inherit" noWrap>
+								Train Me
+							</Typography>
+						</Toolbar>
+					</AppBar>
+					<Drawer
+						variant="permanent"
+						className={classNames(classes.drawer, {
 							[classes.drawerOpen]: open,
 							[classes.drawerClose]: !open,
-						}),
-					}}
-					open={this.state.open}
-				>
-					<div className={classes.toolbar}>
-						<IconButton onClick={this.handleDrawerClose}>
-							{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-						</IconButton>
-					</div>
-					<Divider />
-					<List>
-						<ListItem button key='clients-nav'>
-							<ListItemIcon><PersonIcon/></ListItemIcon>
-							<ListItemText primary='Clients' />
-						</ListItem>
-						<ListItem button key='appointments-nav'>
-							<ListItemIcon><AlarmIcon/></ListItemIcon>
-							<ListItemText primary='Appointments' secondary='Coming Soon!' />
-						</ListItem>
-					</List>
-				</Drawer>
-				<main className={classes.content}>
-					<div className={classes.toolbar} />
-					<Router>
-						<Fragment>
-							<Route path="/login" component={LoginFormPage}/>
-							<PrivateRoute path="/" component={ClientsPage}/>
-						</Fragment>
-					</Router>
-				</main>
-			</div>
+						})}
+						classes={{
+							paper: classNames({
+								[classes.drawerOpen]: open,
+								[classes.drawerClose]: !open,
+							}),
+						}}
+						open={this.state.open}
+					>
+						<div className={classes.toolbar}>
+							<IconButton onClick={this.handleDrawerClose}>
+								{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+							</IconButton>
+						</div>
+						<Divider />
+						<List>
+							<ListItem button key='clients-nav' component={Link} to="/clients">
+								<ListItemIcon><PersonIcon/></ListItemIcon>
+								<ListItemText primary='Clients' />
+							</ListItem>
+							<ListItem button key='services-nav' component={Link} to="/services">
+								<ListItemIcon><AssignmentIcon/></ListItemIcon>
+								<ListItemText primary='Services' />
+							</ListItem>
+							<ListItem button key='appointments-nav'>
+								<ListItemIcon><AlarmIcon/></ListItemIcon>
+								<ListItemText primary='Appointments' secondary='Coming Soon!' />
+							</ListItem>
+						</List>
+					</Drawer>
+					<main className={classes.content}>
+						<div className={classes.toolbar} />
+						<Switch>
+							<Route exact path="/" component={LoginFormPage}/>
+							<PrivateRoute path="/clients" component={ClientsPage}/>
+							<PrivateRoute path="/services" component={ServicesPage}/>
+						</Switch>
+					</main>
+				</div>
+			</Router>
 		);
 	}
 }

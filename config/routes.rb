@@ -8,10 +8,10 @@ Rails.application.routes.draw do
       put :archive, on: :member
     end
 
+    resources :services, only: [:index, :show, :create, :update, :destroy]
+
     get '/profile' => 'users#profile'
   end
 
-  get '*path', to: "application#index", constraints: ->(request) do
-    !request.xhr? && request.format.html?
-  end
+  get '*path', to: 'application#index'
 end

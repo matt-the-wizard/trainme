@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
 	<Route {...rest} render={(props) => (isAuthenticated
 			? <Component {...props} />
-			: <Redirect to='/login' />
+			: <Redirect to='/' />
 	)} />
 );
 
@@ -14,6 +14,6 @@ const mapStateToProps = (state) => {
 	return {
 		isAuthenticated: getIsAuthenticated(state),
 	}
-}
+};
 
 export default connect(mapStateToProps)(PrivateRoute);
