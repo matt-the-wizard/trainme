@@ -12,7 +12,7 @@ class LoginFormPage extends Component {
         const { username, password, isAuthenticated, onLogin, onPasswordChange, onUsernameChange } = this.props;
         return (
             isAuthenticated ?
-                <Redirect to='/' /> :
+                <Redirect to='/clients' /> :
                 <LoginForm username={username}
                            password={password}
                            onLogin={onLogin}

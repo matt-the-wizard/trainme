@@ -21,7 +21,7 @@ module CoachApi
 
     def authenticate_token
       authenticate_with_http_token do |token, _options|
-        user = User.find_by(auth_token: token)
+        user = User.with_unexpired_token(token, 2.days.ago)
         if user.present?
           ActiveSupport::SecurityUtils
             .secure_compare(::Digest::SHA256.hexdigest(token),

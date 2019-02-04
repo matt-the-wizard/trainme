@@ -6,6 +6,7 @@ module CoachApi
       user = User.validate_login(params[:username], params[:password])
       if user.present?
         user.regenerate_auth_token
+        user.update_column(:auth_token_created_at, Time.now)
         render json: { token: user.auth_token }
       else
         render_unauthorized('Error with your login or password')
