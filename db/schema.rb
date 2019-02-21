@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_184203) do
+ActiveRecord::Schema.define(version: 2019_02_20_142339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,29 @@ ActiveRecord::Schema.define(version: 2019_02_04_184203) do
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
-  create_table "services", force: :cascade do |t|
+  create_table "fitness_services", force: :cascade do |t|
     t.string "title", null: false
     t.integer "duration", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_services_on_user_id"
+    t.index ["user_id"], name: "index_fitness_services_on_user_id"
+  end
+
+  create_table "fitness_sessions", force: :cascade do |t|
+    t.bigint "client_id"
+    t.bigint "user_id"
+    t.bigint "fitness_service_id"
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.date "day", null: false
+    t.string "location", null: false
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_fitness_sessions_on_client_id"
+    t.index ["fitness_service_id"], name: "index_fitness_sessions_on_fitness_service_id"
+    t.index ["user_id"], name: "index_fitness_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

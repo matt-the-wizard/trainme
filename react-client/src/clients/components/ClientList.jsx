@@ -45,7 +45,7 @@ const ClientList = (props) => {
 				</ListItem>
 				{props.clients.map((client) => (
 					<ListItem key={client.id}>
-						<Fab className={classes.avatar}>
+						<Fab size='small' className={classes.avatar}>
 							<PersonIcon />
 						</Fab>
 						<ListItemText primary={client.name} secondary={
@@ -62,10 +62,10 @@ const ClientList = (props) => {
 							</React.Fragment>
 						} />
 						{showEdit &&
-						<Fab className={classes.edit} onClick={(evt) => updateClient(evt, client)}>
+						<Fab size='small' className={classes.edit} onClick={(evt) => updateClient(evt, client)}>
 							<EditIcon />
 						</Fab>}
-						{showDelete && <Fab className={classes.delete} onClick={(evt) => deleteClient(evt, client)}>
+						{showDelete && <Fab size='small' className={classes.delete} onClick={(evt) => deleteClient(evt, client)}>
 							<DeleteIcon />
 						</Fab>}
 					</ListItem>

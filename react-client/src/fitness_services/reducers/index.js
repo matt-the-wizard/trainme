@@ -2,7 +2,7 @@ import {
     SEARCH_SERVICES_SUCCEEDED,
     SEARCH_SERVICES_FAILED,
 }
-from "../actions";
+    from "../actions";
 
 export default function(state = {
     services: {},

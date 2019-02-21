@@ -1,4 +1,4 @@
-class Service < ApplicationRecord
+class FitnessService < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :duration
 

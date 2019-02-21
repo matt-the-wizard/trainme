@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ClientsPage from '../clients/containers/ClientsPage';
-import ServicesPage from '../services/containers/ServicesPage';
+import ServicesPage from '../fitness_services/containers/ServicesPage';
 import LoginFormPage from "../security/containers/LoginFormPage";
 import PrivateRoute from '../security/components/PrivateRoute';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,6 +23,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import CalendarPage from "../fitness_sessions/containers/CalendarPage";
 
 const drawerWidth = 240;
 
@@ -159,9 +160,9 @@ class App extends Component {
 								<ListItemIcon><AssignmentIcon/></ListItemIcon>
 								<ListItemText primary='Services' />
 							</ListItem>
-							<ListItem button key='appointments-nav'>
+							<ListItem button key='appointments-nav' component={Link} to={"/sessions"}>
 								<ListItemIcon><AlarmIcon/></ListItemIcon>
-								<ListItemText primary='Appointments' secondary='Coming Soon!' />
+								<ListItemText primary='Appointments' />
 							</ListItem>
 						</List>
 					</Drawer>
@@ -171,6 +172,7 @@ class App extends Component {
 							<Route exact path="/" component={LoginFormPage}/>
 							<PrivateRoute path="/clients" component={ClientsPage}/>
 							<PrivateRoute path="/services" component={ServicesPage}/>
+							<PrivateRoute path="/sessions" component={CalendarPage}/>
 						</Switch>
 					</main>
 				</div>

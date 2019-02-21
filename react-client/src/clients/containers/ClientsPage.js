@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 class ClientsPage extends Component {
 	componentDidMount() {
 		this.props.searchClients();
-  	}
+	}
 
 	render() {
 		const { clients, openClientModal, openArchiveModal } = this.props;

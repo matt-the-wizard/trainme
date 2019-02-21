@@ -11,7 +11,7 @@ from "../actions";
 export function searchServices() {
     return (dispatch, getState) => {
         const token = getToken(getState());
-        fetch('/coach_api/services', {
+        fetch('/coach_api/fitness_services', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export function searchServices() {
                 dispatch({type: SEARCH_SERVICES_SUCCEEDED, payload: json.services})
             })
             .catch(error => {
-                dispatch({type: SEARCH_SERVICES_FAILED, payload: "Unable to load services" })
+                dispatch({type: SEARCH_SERVICES_FAILED, payload: "Unable to load fitness_services" })
             });
     }
 }
