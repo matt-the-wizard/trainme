@@ -3,21 +3,23 @@ import {
 } from "../../security/selectors";
 
 import {
+    SEARCH_DAY,
     SEARCH_SESSIONS_FAILED,
     SEARCH_SESSIONS_SUCCEEDED,
 }
-from "../actions";
+    from '../actions';
 
-export function searchSessions() {
+export function searchSessions(day) {
     return (dispatch, getState) => {
+        dispatch({type: SEARCH_DAY, payload: day});
         const token = getToken(getState());
-        fetch('/coach_api/fitness_sessions', {
+        fetch('/coach_api/fitness_sessions?day=' + day.format("YYYY-MM-DD"), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`,
                 token: token,
-            }
+            },
         }).then(response => response.json())
             .then(json => {
                 dispatch({type: SEARCH_SESSIONS_SUCCEEDED, payload: json.sessions})

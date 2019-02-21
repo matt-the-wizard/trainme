@@ -19,7 +19,7 @@ class FitnessSessionCreationService < BaseService
         fitness_service: @service
       )
       if fitness_session.persisted?
-        @response.payload = fitness_service
+        @response.payload = fitness_session
       else
         @response.errors << 'Failed to create fitness session'
       end

@@ -1,6 +1,7 @@
 import {createSelector} from "reselect";
 import moment from 'moment';
 
+export const getselectedDay = state => state.SESSIONS.selectedDay;
 export const getSessions = state => state.SESSIONS.sessions;
 export const getErrorMessage = state => state.SESSIONS.errorMessage;
 

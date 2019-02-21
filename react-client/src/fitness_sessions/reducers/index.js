@@ -1,14 +1,20 @@
 import {
     SEARCH_SESSIONS_SUCCEEDED,
     SEARCH_SESSIONS_FAILED,
+    SEARCH_DAY
 }
-    from "../actions";
+from "../actions";
 
 export default function(state = {
     sessions: {},
     errorMessage: '',
 }, action) {
     switch (action.type) {
+        case SEARCH_DAY:
+            return {
+                ...state,
+                selectedDay: action.payload
+            };
         case SEARCH_SESSIONS_SUCCEEDED:
             return {
                 ...state,
@@ -20,6 +26,7 @@ export default function(state = {
                             clientName: current.client_name,
                             startTime: current.start_time,
                             endTime: current.end_time,
+                            serviceTitle: current.service_title,
                         }
                     }
                 ), {}),

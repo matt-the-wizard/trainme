@@ -7,7 +7,7 @@ import {
 } from '../actions';
 
 export default function(state = {
-    token: '',
+    token: 'zBMEi4fnSHXM6QJQw5WCsYo7',
     username: '',
     password:'',
 }, action) {

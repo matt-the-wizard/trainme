@@ -14,6 +14,7 @@ class FitnessSessionReportService < BaseService
       services = FitnessService.arel_table
 
       projection = [
+        sessions[:id],
         clients[:name].as('client_name'),
         services[:title].as('service_title'),
         sessions[:start_time],
