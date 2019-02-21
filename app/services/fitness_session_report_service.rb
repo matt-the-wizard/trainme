@@ -31,6 +31,7 @@ class FitnessSessionReportService < BaseService
             .project(*projection)
             .where(coaches[:id].eq(@coach.id))
             .where(sessions[:day].eq(@day)) # TODO: Make this array of date inputs
+            .order(sessions[:start_time])
             .to_sql
 
       @response.payload = ActiveRecord::Base.connection.execute(sql).to_a

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     #   #  put :archive, on: :member
     # end
 
-    resources :fitness_sessions, only: [:index]
+    resources :fitness_sessions, only: [:index, :create]
 
     get '/profile' => 'users#profile'
   end
