@@ -5,13 +5,31 @@ import { connect } from 'react-redux';
 import {getClientsOrderedByName} from '../selectors';
 import {searchClients, openClientModal, openArchiveModal} from '../actionCreators';
 import ClientList from '../components/ClientList';
-import ClientModal from './ClientModal';
-import ArchiveModal from './ArchiveModal';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@material-ui/core/AppBar';
+import { withStyles } from '@material-ui/core';
+
+const styles = theme => ({
+	appBar: {
+		top: 'auto',
+		bottom: 0,
+	},
+	toolbar: {
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	addFabButton: {
+		position: 'absolute',
+		zIndex: 1,
+		top: -30,
+		left: 0,
+		right: 0,
+		margin: '0 auto',
+	},
+});
 
 class ClientsPage extends Component {
 	componentDidMount() {
@@ -19,28 +37,17 @@ class ClientsPage extends Component {
 	}
 
 	render() {
-		const { clients, openClientModal, openArchiveModal } = this.props;
+		const { clients, classes, openClientModal, openArchiveModal } = this.props;
 		return (
 			<div>
 				<Paper>
-					<ClientList clients={clients} updateClient={openClientModal} deleteClient={openArchiveModal}>
-						<div style={{flexGrow: 1}}>
-							<Grid container>
-								<Grid item xs align='left'>
-									<Fab size="small" color="secondary" aria-label="Add"  onClick={openClientModal}><AddIcon /></Fab>
-								</Grid>
-								<Grid item xs align='center'>
-									<Typography variant="h5" gutterBottom>Clients</Typography>
-								</Grid>
-								<Grid item xs align='right'>
-									&nbsp;
-								</Grid>
-							</Grid>
-						</div>
-					</ClientList>
+					<ClientList clients={clients} updateClient={openClientModal} deleteClient={openArchiveModal}/>
+					<AppBar position="fixed" color="primary" className={classes.appBar}>
+						<Toolbar className={classes.toolbar}>
+							<Fab className={classes.addFabButton} color="secondary" aria-label="Add" onClick={openClientModal}><AddIcon /></Fab>
+						</Toolbar>
+					</AppBar>
 				</Paper>
-				<ClientModal />
-				<ArchiveModal />
 			</div>
     )
   }
@@ -72,4 +79,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({searchClients, openClientModal, openArchiveModal}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientsPage);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(ClientsPage));

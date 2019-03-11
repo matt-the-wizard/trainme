@@ -9,6 +9,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 class ArchiveModal extends Component {
     render() {
@@ -25,9 +26,11 @@ class ArchiveModal extends Component {
             <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">Archive {name}</DialogTitle>
                 <DialogContent>
-                    You are going to archive {name} and they will no longer be accessible unless reached out to by an administrator.
-                    Are you sure you want to continue?
-                    <br />{showErrorMessage && errorMessage}
+                    <DialogContentText>
+                        You are going to archive {name} and they will no longer be accessible unless reached out to by an administrator.
+                        Are you sure you want to continue?
+                        <br />{showErrorMessage && errorMessage}
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button variant={"contained"} color="primary" onClick={onSubmit}>

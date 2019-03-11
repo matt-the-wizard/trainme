@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from "@material-ui/core/es/List/List";
@@ -45,9 +45,11 @@ const ClientList = (props) => {
 				</ListItem>
 				{props.clients.map((client) => (
 					<ListItem key={client.id}>
+						<Fragment>
 						<Fab size='small' className={classes.avatar}>
 							<PersonIcon />
 						</Fab>
+						</Fragment>
 						<ListItemText primary={client.name} secondary={
 							<React.Fragment>
 								<Typography component="span" className={classes.inline} color="textPrimary">

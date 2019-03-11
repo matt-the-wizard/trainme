@@ -3,61 +3,77 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { getselectedDay, getSessionsOrderedByStartTime } from '../selectors';
-import {searchSessions} from '../actionCreators';
+import { getselectedDay, getDays, getSessionsOrderedByStartTime } from '../selectors';
+import { openSessionModal, searchSessions } from '../actionCreators';
 import SessionList from '../components/SessionList';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import moment from 'moment';
-import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import AddIcon from '@material-ui/icons/Add';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const styles = theme => ({
-    root: {
-        flexGrow: 1,
-    },
     fab: {
         margin: theme.spacing.unit,
     },
     title: {
         textAlign: 'center',
     },
+    appBar: {
+        top: 'auto',
+        bottom: 0,
+        marginTop: '100px'
+    },
+    toolbar: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    addFabButton: {
+        position: 'absolute',
+        zIndex: 1,
+        top: -30,
+        left: 0,
+        right: 0,
+        margin: '0 auto',
+    },
 });
 
 class CalendarPage extends Component {
     componentDidMount() {
-        this.props.searchSessions(moment());
+        this.props.searchSessions(this.props.selectedDay, true);
     }
 
     render() {
-        const { selectedDay, sessions, classes, searchSessions } = this.props;
-        let previous = moment(selectedDay).subtract(1, 'day');
-        const next = moment(selectedDay).add(1, 'day');
+        const { selectedDay, days, sessions, classes, searchSessions, openSessionModal } = this.props;
         const dayFormat = "D";
         const headerFormat = "dddd, MMM Do YYYY";
         return (
             <div>
                 <Paper>
-                    <div className={classes.root}>
-                        <Grid container spacing={24}>
-                            <Grid item xs={12}>
-                                <Typography variant="h5" className={classes.title}>Sessions for {selectedDay.format(headerFormat)}</Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Fab size='large' color='primary' className={classes.fab} onClick={() => searchSessions(previous)}>
-                                   <ChevronLeftIcon/>{previous.format(dayFormat)}
-                                </Fab>
-                            </Grid>
-                            <Grid item xs={6} align='right'>
-                                <Fab color='primary' className={classes.fab} onClick={() => searchSessions(next)}>
-                                    {next.format(dayFormat)}<ChevronRightIcon/>
-                                </Fab>
-                            </Grid>
-                        </Grid>
-                    </div>
+                    <Typography variant="h6" className={classes.title}>
+                        {selectedDay.format(headerFormat)}
+                    </Typography>
+                    <Fab className={classes.fab} onClick={() => searchSessions(days[0].subtract(1, 'week').startOf('isoWeek'), true)}>
+                        <ChevronLeftIcon />
+                    </Fab>
+                    {days.map( (day, index) => (
+                        <Fab key={index} color={day.isSame(selectedDay, 'day') ? 'primary' : 'secondary'} className={classes.fab} onClick={() => searchSessions(day)}>
+                            {day.format(dayFormat)}
+                        </Fab>
+                    ))}
+                    <Fab className={classes.fab} onClick={() => searchSessions(days[6].add(1, 'week').startOf('isoWeek'), true)}>
+                        <ChevronRightIcon />
+                    </Fab>
                     <SessionList sessions={sessions} />
+                    <AppBar position="fixed" color="primary" className={classes.appBar}>
+                        <Toolbar className={classes.toolbar}>
+                            <Fab className={classes.addFabButton} color="secondary" aria-label="Add" onClick={openSessionModal}><AddIcon /></Fab>
+                        </Toolbar>
+                    </AppBar>
                 </Paper>
             </div>
         )
@@ -76,24 +92,25 @@ CalendarPage.propTypes = {
         notes: PropTypes.string,
     })),
     searchSessions: PropTypes.func.isRequired,
-    selectedDay: PropTypes.instanceOf(moment).isRequired
+    selectedDay: PropTypes.instanceOf(moment).isRequired,
+    days: PropTypes.arrayOf(PropTypes.instanceOf(moment)).isRequired,
+    openSessionModal: PropTypes.func.isRequired,
 };
 
 CalendarPage.defaultProps = {
-    sessions: [],
     classes: {},
-    selectedDay: moment(),
 };
 
 const mapStateToProps = (state) => {
     return {
         sessions: getSessionsOrderedByStartTime(state),
-        selectedDay: getselectedDay(state)
+        selectedDay: getselectedDay(state),
+        days: getDays(state),
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({searchSessions}, dispatch);
+    return bindActionCreators({searchSessions, openSessionModal}, dispatch);
 };
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(CalendarPage));

@@ -49,7 +49,7 @@ const LoginForm = (props) => {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Sign in
+					Sign In
 				</Typography>
 				<div className={classes.form}>
 					<TextField placeholder="username" type="text" value={username} fullWidth

@@ -24,8 +24,11 @@ import PersonIcon from '@material-ui/icons/Person';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import CalendarPage from "../fitness_sessions/containers/CalendarPage";
+import ClientModal from '../clients/containers/ClientModal';
+import ArchiveModal from '../clients/containers/ArchiveModal';
+import SessionModal from '../fitness_sessions/containers/SessionModal';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const styles = theme => ({
 	root: {
@@ -174,6 +177,9 @@ class App extends Component {
 							<PrivateRoute path="/services" component={ServicesPage}/>
 							<PrivateRoute path="/sessions" component={CalendarPage}/>
 						</Switch>
+						<ClientModal />
+						<ArchiveModal />
+						<SessionModal />
 					</main>
 				</div>
 			</Router>

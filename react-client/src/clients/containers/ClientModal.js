@@ -10,6 +10,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 class ClientModal extends Component {
     render() {
@@ -29,11 +30,16 @@ class ClientModal extends Component {
 
         return (
             <Dialog open={open} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-                <DialogTitle id="alert-dialog-title">Client</DialogTitle>
+                <DialogTitle id="alert-dialog-title">Input Client Information</DialogTitle>
                     <DialogContent>
                         <ClientForm name={name} email={email} phone={phone}
                                     onNameChange={onNameChange} onEmailChange={onEmailChange} onPhoneChange={onPhoneChange} />
-                        <br />{showErrorMessage && errorMessage}
+                        <br />
+                        {showErrorMessage &&
+                            <DialogContentText>
+                                {errorMessage}
+                            </DialogContentText>
+                        }
                     </DialogContent>
                     <DialogActions>
                         <Button variant={"contained"} color="primary" onClick={onSubmit}>

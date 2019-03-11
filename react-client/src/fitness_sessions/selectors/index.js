@@ -1,9 +1,11 @@
 import {createSelector} from "reselect";
 import moment from 'moment';
 
-export const getselectedDay = state => state.SESSIONS.selectedDay;
+export const getselectedDay = state => state.SESSIONS.selectedDay || moment().startOf('isoWeek');
 export const getSessions = state => state.SESSIONS.sessions;
 export const getErrorMessage = state => state.SESSIONS.errorMessage;
+export const getSessionModalOpen = state => state.SESSIONS.sessionModalOpen;
+export const getDays = state => state.SESSIONS.days;
 
 export const getSessionsWithStartTimeSortKey = createSelector([getSessions], sessions => Object.values(sessions)
     .map(session => ({

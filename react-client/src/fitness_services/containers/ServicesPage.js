@@ -5,10 +5,7 @@ import { connect } from 'react-redux';
 import {getServicesOrderedByTitle} from '../selectors';
 import {searchServices} from '../actionCreators';
 import ServiceList from '../components/ServiceList';
-import Fab from '@material-ui/core/Fab';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
 class ServicesPage extends Component {
 	componentDidMount() {
@@ -20,21 +17,7 @@ class ServicesPage extends Component {
 		return (
 			<div>
 				<Paper>
-					<ServiceList services={services}>
-						<div style={{flexGrow: 1}}>
-							<Grid container>
-								<Grid item xs align='left'>
-									{/*<Fab size="small" color="secondary" aria-label="Add"><AddIcon /></Fab>*/}
-								</Grid>
-								<Grid item xs align='center'>
-									<Typography variant="h5" gutterBottom>Services</Typography>
-								</Grid>
-								<Grid item xs align='right'>
-									&nbsp;
-								</Grid>
-							</Grid>
-						</div>
-					</ServiceList>
+					<ServiceList services={services}/>
 				</Paper>
 			</div>
     )

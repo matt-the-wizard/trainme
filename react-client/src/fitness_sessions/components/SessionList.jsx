@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import List from "@material-ui/core/es/List/List";
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
-import Typography from '../../clients/components/ClientList';
+import { Typography } from '@material-ui/core';
 import moment from 'moment';
 
 const styles = theme => ({

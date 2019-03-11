@@ -20,8 +20,8 @@ const store = createStore(
   combineReducers({
 	  CLIENTS: ClientReducer,
 	  SECURITY: SecurityReducer,
-      SERVICES: ServiceReducer,
-      SESSIONS: SessionsReducer,
+    SERVICES: ServiceReducer,
+    SESSIONS: SessionsReducer,
   }), {}, compose(applyMiddleware(thunk)),
 );
 
