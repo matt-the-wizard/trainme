@@ -10,7 +10,7 @@ import {
   getSessionStartTime,
   getSessionEndTime,
 }
-  from '../selectors';
+from '../selectors';
 
 import {
   closeSessionModal,
@@ -24,16 +24,6 @@ import {
 }
 from '../actionCreators';
 
-import {
-  searchClients,
-}
-from '../../clients/actionCreators';
-
-import {
-  searchServices,
-}
-from '../../fitness_services/actionCreators';
-
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -46,11 +36,6 @@ import { getClientsOrderedByName } from '../../clients/selectors';
 import { getServicesOrderedByTitle } from '../../fitness_services/selectors';
 
 class SessionModal extends Component {
-  componentDidMount() {
-    this.props.searchClients();
-    this.props.searchServices();
-  }
-
   render() {
     const {
       onClose,
@@ -128,8 +113,6 @@ SessionModal.propTypes = {
   onServiceChange: PropTypes.func.isRequired,
   onStartTimeChange: PropTypes.func.isRequired,
   onEndTimeChange: PropTypes.func.isRequired,
-  searchClients: PropTypes.func.isRequired,
-  searchServices: PropTypes.func.isRequired,
   saveSession: PropTypes.func.isRequired,
 };
 
@@ -141,8 +124,8 @@ SessionModal.defaultProps = {
   clients: [],
   serviceId: '',
   services: [],
-  startTime: new Date(),
-  endTime: new Date(),
+  startTime: new Date(1970, 1, 1, 9, 0, 0, 0),
+  endTime: new Date(1970, 1, 1, 10, 0, 0, 0),
 };
 
 const mapStateToProps = (state) => {
@@ -168,8 +151,6 @@ const mapDispatchToProps = (dispatch) => {
     updateSessionNotes,
     updateSessionStartTime,
     updateSessionEndTime,
-    searchClients,
-    searchServices,
     saveSession,
   }, dispatch);
 };
@@ -184,8 +165,6 @@ const mergeProps = (stateProps, dispatchProps, props) => ({
   onServiceChange: (evt, serviceId) => dispatchProps.updateSessionServiceId(serviceId),
   onStartTimeChange: (startTime) => dispatchProps.updateSessionStartTime(startTime),
   onEndTimeChange: (endTime) => dispatchProps.updateSessionEndTime(endTime),
-  searchClients: dispatchProps.searchClients,
-  searchServices: dispatchProps.searchServices,
   saveSession: dispatchProps.saveSession,
 });
 

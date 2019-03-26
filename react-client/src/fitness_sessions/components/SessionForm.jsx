@@ -15,10 +15,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   },
   formControl: {
-    minWidth: 120,
+    minWidth: 300,
     display: 'flex',
     width: '100%',
-    padding: 10,
+    padding: 6,
   },
   select: {
     flex: 1,

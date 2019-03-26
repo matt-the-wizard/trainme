@@ -31,7 +31,11 @@ module CoachApi
       if response.errors?
         render json: { errors: response.errors }, status: :conflict
       else
-        render json: { session: response.payload.as_json }, status: :ok
+        fitness_session = response.payload
+        render json: { session: response.payload.as_json.merge(
+          client_name: fitness_session.client&.name,
+          service_title: fitness_session.fitness_service&.title
+        ) }, status: :ok
       end
     end
 
@@ -39,16 +43,16 @@ module CoachApi
 
     def _session_creation_params
       params.require(:fitness_session).permit(:service_id,
-                                      :client_id,
-                                      :notes,
-                                      :location,
-                                      :start_time_hour,
-                                      :start_time_minutes,
-                                      :start_time_meridiem,
-                                      :end_time_hour,
-                                      :end_time_minutes,
-                                      :end_time_meridiem,
-                                      :day)
+                                              :client_id,
+                                              :notes,
+                                              :location,
+                                              :start_time_hour,
+                                              :start_time_minutes,
+                                              :start_time_meridiem,
+                                              :end_time_hour,
+                                              :end_time_minutes,
+                                              :end_time_meridiem,
+                                              :day)
     end
   end
 end

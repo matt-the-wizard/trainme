@@ -8,11 +8,9 @@ import ClientList from '../components/ClientList';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Paper from '@material-ui/core/Paper';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = () => ({
 	appBar: {
 		top: 'auto',
 		bottom: 0,
@@ -23,11 +21,8 @@ const styles = theme => ({
 	},
 	addFabButton: {
 		position: 'absolute',
-		zIndex: 1,
-		top: -30,
-		left: 0,
-		right: 0,
-		margin: '0 auto',
+		right: 8,
+		top: 70,
 	},
 });
 
@@ -42,11 +37,7 @@ class ClientsPage extends Component {
 			<div>
 				<Paper>
 					<ClientList clients={clients} updateClient={openClientModal} deleteClient={openArchiveModal}/>
-					<AppBar position="fixed" color="primary" className={classes.appBar}>
-						<Toolbar className={classes.toolbar}>
-							<Fab className={classes.addFabButton} color="secondary" aria-label="Add" onClick={openClientModal}><AddIcon /></Fab>
-						</Toolbar>
-					</AppBar>
+					<Fab className={classes.addFabButton} color="secondary" aria-label="Add" onClick={openClientModal}><AddIcon /></Fab>
 				</Paper>
 			</div>
     )

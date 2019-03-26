@@ -7,18 +7,26 @@ import { getselectedDay, getDays, getSessionsOrderedByStartTime } from '../selec
 import { openSessionModal, searchSessions } from '../actionCreators';
 import SessionList from '../components/SessionList';
 import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
 import moment from 'moment';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+
+import {
+    searchClients,
+}
+from '../../clients/actionCreators';
+
+import {
+    searchServices,
+}
+from '../../fitness_services/actionCreators';
 
 const styles = theme => ({
     fab: {
         margin: theme.spacing.unit,
+        fontSize: '6',
     },
     title: {
         textAlign: 'center',
@@ -34,29 +42,24 @@ const styles = theme => ({
     },
     addFabButton: {
         position: 'absolute',
-        zIndex: 1,
-        top: -30,
-        left: 0,
-        right: 0,
-        margin: '0 auto',
+        right: 8,
+        top: 70,
     },
 });
 
 class CalendarPage extends Component {
     componentDidMount() {
         this.props.searchSessions(this.props.selectedDay, true);
+        this.props.searchClients();
+        this.props.searchServices();
     }
 
     render() {
         const { selectedDay, days, sessions, classes, searchSessions, openSessionModal } = this.props;
         const dayFormat = "D";
-        const headerFormat = "dddd, MMM Do YYYY";
         return (
             <div>
                 <Paper>
-                    <Typography variant="h6" className={classes.title}>
-                        {selectedDay.format(headerFormat)}
-                    </Typography>
                     <Fab className={classes.fab} onClick={() => searchSessions(days[0].subtract(1, 'week').startOf('isoWeek'), true)}>
                         <ChevronLeftIcon />
                     </Fab>
@@ -69,11 +72,7 @@ class CalendarPage extends Component {
                         <ChevronRightIcon />
                     </Fab>
                     <SessionList sessions={sessions} />
-                    <AppBar position="fixed" color="primary" className={classes.appBar}>
-                        <Toolbar className={classes.toolbar}>
-                            <Fab className={classes.addFabButton} color="secondary" aria-label="Add" onClick={openSessionModal}><AddIcon /></Fab>
-                        </Toolbar>
-                    </AppBar>
+                    <Fab className={classes.addFabButton} color="secondary" aria-label="Add" onClick={openSessionModal}><AddIcon /></Fab>
                 </Paper>
             </div>
         )
@@ -96,6 +95,8 @@ CalendarPage.propTypes = {
         notes: PropTypes.string,
     })),
     searchSessions: PropTypes.func.isRequired,
+    searchClients: PropTypes.func.isRequired,
+    searchServices: PropTypes.func.isRequired,
     selectedDay: PropTypes.instanceOf(moment).isRequired,
     days: PropTypes.arrayOf(PropTypes.instanceOf(moment)).isRequired,
     openSessionModal: PropTypes.func.isRequired,
@@ -114,7 +115,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({searchSessions, openSessionModal}, dispatch);
+    return bindActionCreators({searchSessions, openSessionModal, searchClients, searchServices}, dispatch);
 };
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(CalendarPage));

@@ -7,28 +7,47 @@ export const getErrorMessage = state => state.SESSIONS.errorMessage;
 export const getSessionModalOpen = state => state.SESSIONS.sessionModalOpen;
 export const getDays = state => state.SESSIONS.days;
 
-// export const getSessionsWithStartTimeSortKey = createSelector([getSessions], sessions => Object.values(sessions)
-//     .map(session => ({
-//         ...session,
-//         sortKey: session.startTime
-//     })));
+export const getSessionsWithStartTimeSortKey = createSelector([getSessions], sessions => Object.values(sessions)
+    .map(session => ({
+        ...session,
+        sortKey: {
+          hour: session.startTimeHour,
+          minute: session.startTimeMinutes,
+          meridiem: session.startTimeMeridiem,
+        }
+    })));
 
 export const getSessionsOrderedByStartTime = createSelector(
-    [getSessions],
+    [getSessionsWithStartTimeSortKey],
     (sessions) => sessions
         .sort((a, b) => {
-          console.log(a,  b);
           if (a.startTimeMeridiem === "AM" && b.startTimeMeridiem === "PM") {
             return 1;
           }
-          if (a.startTimeMeridiem === "PM" && b.startTimeMeridiem === "AM") {
+          else if (a.startTimeMeridiem === "PM" && b.startTimeMeridiem === "AM") {
             return -1;
           }
-          return 0;
-          // TODO: Sort by hour then minutes
-          // if (a.startTimeHour > b.startTimeHour) {
-          //
-          // }
+          else {
+            if (a.startTimeHour === b.startTimeHour) {
+              if (a.startTimeMinutes > b.startTimeMinutes) {
+                return 1;
+              }
+              else if (a.startTimeMinutes < b.startTimeMinutes) {
+                return -1;
+              }
+              else {
+                return 0;
+              }
+            }
+            else {
+              if (a.startTimeHour > b.startTimeHour) {
+                return 1;
+              }
+              else {
+                return -1;
+              }
+            }
+          }
         })
 );
 

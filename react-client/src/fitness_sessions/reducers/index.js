@@ -25,8 +25,8 @@ export default function(state = {
         clientId: '',
         serviceId: '',
         day: null,
-        startTime: new Date(),
-        endTime: new Date(),
+        startTime: new Date(1970, 1, 1, 9, 0, 0, 0),
+        endTime: new Date(1970, 1, 1, 10, 0, 0, 0),
         notes: '',
         location: ''
     },

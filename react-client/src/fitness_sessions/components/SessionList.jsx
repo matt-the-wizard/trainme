@@ -16,8 +16,10 @@ const SessionList = (props) => {
             <List className={classes.root}>
                 {sessions.map((session) => (
                     <ListItem key={session.id}>
-                        <ListItemText primary={session.startTimeHour + ':' + session.startTimeMinutes + ' ' + session.startTimeMeridiem + ' - ' +
-                            session.endTimeHour + ':' + session.endTimeMinutes + ' ' + session.endTimeMeridiem} secondary={
+                        <ListItemText primary={
+                            session.startTimeHour + ':' + session.startTimeMinutes.toString().padStart(2, '0') + ' ' + session.startTimeMeridiem + ' - ' +
+                            session.endTimeHour + ':' + session.endTimeMinutes.toString().padStart(2, '0') + ' ' + session.endTimeMeridiem
+                        } secondary={
                             <React.Fragment>
                                 <Typography component="span" color="textPrimary">
                                     {session.clientName} at {session.location} for {session.serviceTitle}
