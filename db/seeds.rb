@@ -43,8 +43,12 @@ FitnessSessionCreationService.new(
   client: Client.first,
   service: FitnessService.first,
   location: 'Rise Athletic Club',
-  day: Date.today,
-  start_time: (Date.today.noon - 1.hour).to_time,
-  end_time: Date.today.noon.to_time,
+  day: Time.zone.now.to_date,
+  start_time_hour: 6,
+  start_time_minutes: 30,
+  start_time_meridiem: 'PM',
+  end_time_hour: 7,
+  end_time_minutes: 30,
+  end_time_meridiem: 'PM',
   notes: 'Super Awesome training session is scheduled, bring boxing gloves'
 ).create_session

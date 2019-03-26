@@ -7,17 +7,28 @@ export const getErrorMessage = state => state.SESSIONS.errorMessage;
 export const getSessionModalOpen = state => state.SESSIONS.sessionModalOpen;
 export const getDays = state => state.SESSIONS.days;
 
-export const getSessionsWithStartTimeSortKey = createSelector([getSessions], sessions => Object.values(sessions)
-    .map(session => ({
-        ...session,
-        sortKey: session.startTime
-    })));
+// export const getSessionsWithStartTimeSortKey = createSelector([getSessions], sessions => Object.values(sessions)
+//     .map(session => ({
+//         ...session,
+//         sortKey: session.startTime
+//     })));
 
 export const getSessionsOrderedByStartTime = createSelector(
-    [getSessionsWithStartTimeSortKey],
+    [getSessions],
     (sessions) => sessions
-        .sort((first, second) => {
-          moment.utc(first.startTime).diff(moment.utc(second.startTime))
+        .sort((a, b) => {
+          console.log(a,  b);
+          if (a.startTimeMeridiem === "AM" && b.startTimeMeridiem === "PM") {
+            return 1;
+          }
+          if (a.startTimeMeridiem === "PM" && b.startTimeMeridiem === "AM") {
+            return -1;
+          }
+          return 0;
+          // TODO: Sort by hour then minutes
+          // if (a.startTimeHour > b.startTimeHour) {
+          //
+          // }
         })
 );
 

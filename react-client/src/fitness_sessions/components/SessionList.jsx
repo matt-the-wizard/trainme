@@ -5,9 +5,8 @@ import List from "@material-ui/core/es/List/List";
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import { Typography } from '@material-ui/core';
-import moment from 'moment';
 
-const styles = theme => ({
+const styles = () => ({
 });
 
 const SessionList = (props) => {
@@ -17,8 +16,8 @@ const SessionList = (props) => {
             <List className={classes.root}>
                 {sessions.map((session) => (
                     <ListItem key={session.id}>
-                        <ListItemText primary={moment(session.startTime, "HH:mm:ss").format("hh:mm A") + ' - ' +
-                            moment(session.endTime, "HH:mm:ss").format("hh:mm A")} secondary={
+                        <ListItemText primary={session.startTimeHour + ':' + session.startTimeMinutes + ' ' + session.startTimeMeridiem + ' - ' +
+                            session.endTimeHour + ':' + session.endTimeMinutes + ' ' + session.endTimeMeridiem} secondary={
                             <React.Fragment>
                                 <Typography component="span" color="textPrimary">
                                     {session.clientName} at {session.location} for {session.serviceTitle}
@@ -34,8 +33,12 @@ const SessionList = (props) => {
 SessionList.propTypes = {
     sessions: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
-        startTime: PropTypes.string.isRequired,
-        endTime: PropTypes.string.isRequired,
+        startTimeHour: PropTypes.number.isRequired,
+        startTimeMinutes: PropTypes.number.isRequired,
+        startTimeMeridiem: PropTypes.string.isRequired,
+        endTimeHour: PropTypes.number.isRequired,
+        endTimeMinutes: PropTypes.number.isRequired,
+        endTimeMeridiem: PropTypes.string.isRequired,
         day: PropTypes.string.isRequired,
         clientName: PropTypes.string.isRequired,
         serviceTitle: PropTypes.string.isRequired,

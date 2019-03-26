@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, TimePicker } from 'material-ui-pickers';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   form: {
@@ -15,9 +18,13 @@ const styles = theme => ({
     minWidth: 120,
     display: 'flex',
     width: '100%',
+    padding: 10,
   },
   select: {
     flex: 1,
+  },
+  grid: {
+    width: '60%',
   },
 });
 
@@ -26,6 +33,8 @@ const SessionForm = (props) => {
     classes,
     notes,
     location,
+    startTime,
+    endTime,
     clientId,
     clients,
     serviceId,
@@ -34,6 +43,8 @@ const SessionForm = (props) => {
     onLocationChange,
     onClientChange,
     onServicesChange,
+    onStartTimeChange,
+    onEndTimeChange,
   } = props;
   return (
     <Fragment>
@@ -58,10 +69,49 @@ const SessionForm = (props) => {
             )}
           </Select>
         </div>
-        <TextField label="Location" placeholder="Location" type="text" value={location} fullWidth
-                   onChange={(evt) => onLocationChange(evt, evt.target.value)}/>
-        <TextField multiline rows="3" rowsMax="5" label="Notes" placeholder="Notes" type="text" value={notes} fullWidth
-                   onChange={(evt) => onNotesChange(evt, evt.target.value)}/>
+        <div className={classes.formControl}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container className={classes.grid} justify="space-around">
+              <TimePicker
+                margin="normal"
+                label="Start Time"
+                value={startTime}
+                onChange={(time) => onStartTimeChange(time)}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
+        </div>
+        <div className={classes.formControl}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container className={classes.grid} justify="space-around">
+              <TimePicker
+                margin="normal"
+                label="End Time"
+                value={endTime}
+                onChange={(time) => onEndTimeChange(time)}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
+        </div>
+        <div className={classes.formControl}>
+          <TextField label="Location"
+                     placeholder="Location"
+                     type="text"
+                     value={location}
+                     fullWidth
+                     onChange={(evt) => onLocationChange(evt, evt.target.value)}/>
+        </div>
+        <div className={classes.formControl}>
+          <TextField multiline
+            rows="3"
+            rowsMax="5"
+            label="Notes"
+            placeholder="Notes"
+            type="text"
+            value={notes}
+            fullWidth
+            onChange={(evt) => onNotesChange(evt, evt.target.value)}/>
+        </div>
       </div>
     </Fragment>
   )
@@ -71,6 +121,8 @@ SessionForm.propTypes = {
   notes: PropTypes.string,
   location: PropTypes.string,
   clientId: PropTypes.string,
+  startTime: PropTypes.instanceOf(Date).isRequired,
+  endTime: PropTypes.instanceOf(Date).isRequired,
   clients: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -84,11 +136,15 @@ SessionForm.propTypes = {
   onLocationChange: PropTypes.func.isRequired,
   onClientChange: PropTypes.func.isRequired,
   onServicesChange: PropTypes.func.isRequired,
+  onStartTimeChange: PropTypes.func.isRequired,
+  onEndTimeChange: PropTypes.func.isRequired,
 };
 
 SessionForm.defaultProps ={
   notes: '',
   location: '',
+  startTime: new Date(),
+  endTime: new Date(),
   clientId: '',
   clients: [],
   serviceId: '',

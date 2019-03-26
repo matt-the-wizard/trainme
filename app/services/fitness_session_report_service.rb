@@ -17,8 +17,12 @@ class FitnessSessionReportService < BaseService
         sessions[:id],
         clients[:name].as('client_name'),
         services[:title].as('service_title'),
-        sessions[:start_time],
-        sessions[:end_time],
+        sessions[:start_time_hour],
+        sessions[:start_time_minutes],
+        sessions[:start_time_meridiem],
+        sessions[:end_time_hour],
+        sessions[:end_time_minutes],
+        sessions[:end_time_meridiem],
         sessions[:day],
         sessions[:location],
         sessions[:notes]
@@ -31,7 +35,9 @@ class FitnessSessionReportService < BaseService
             .project(*projection)
             .where(coaches[:id].eq(@coach.id))
             .where(sessions[:day].eq(@day)) # TODO: Make this array of date inputs
-            .order(sessions[:start_time])
+            .order(sessions[:start_time_meridiem].asc)
+            .order(sessions[:start_time_hour])
+            .order(sessions[:start_time_minutes])
             .to_sql
 
       @response.payload = ActiveRecord::Base.connection.execute(sql).to_a

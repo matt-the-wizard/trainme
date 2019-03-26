@@ -7,6 +7,8 @@ import {
   getSessionModalOpen,
   getSessionNotes,
   getSessionServiceId,
+  getSessionStartTime,
+  getSessionEndTime,
 }
   from '../selectors';
 
@@ -16,6 +18,9 @@ import {
   updateSessionNotes,
   updateSessionClientId,
   updateSessionServiceId,
+  updateSessionStartTime,
+  updateSessionEndTime,
+  saveSession,
 }
 from '../actionCreators';
 
@@ -49,9 +54,12 @@ class SessionModal extends Component {
   render() {
     const {
       onClose,
+      saveSession,
       open,
       notes,
       location,
+      startTime,
+      endTime,
       clientId,
       clients,
       serviceId,
@@ -60,6 +68,8 @@ class SessionModal extends Component {
       onNotesChange,
       onClientChange,
       onServiceChange,
+      onStartTimeChange,
+      onEndTimeChange,
     } = this.props;
 
     return (
@@ -69,17 +79,21 @@ class SessionModal extends Component {
           <SessionForm
             notes={notes}
             location={location}
+            startTime={startTime}
+            endTime={endTime}
             clientId={clientId}
             clients={clients}
             serviceId={serviceId}
             services={services}
             onClientChange={onClientChange}
             onServicesChange={onServiceChange}
+            onStartTimeChange={onStartTimeChange}
+            onEndTimeChange={onEndTimeChange}
             onLocationChange={onLocationChange}
             onNotesChange={onNotesChange} />
         </DialogContent>
         <DialogActions>
-          <Button variant={"contained"} color="primary" onClick={onClose}>
+          <Button variant={"contained"} color="primary" onClick={saveSession}>
             Confirm
           </Button>
           <Button color="primary" onClick={onClose}>
@@ -96,6 +110,8 @@ SessionModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   notes: PropTypes.string,
   location: PropTypes.string,
+  startTime: PropTypes.instanceOf(Date).isRequired,
+  endTime: PropTypes.instanceOf(Date).isRequired,
   clientId: PropTypes.string,
   clients: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -110,8 +126,11 @@ SessionModal.propTypes = {
   onLocationChange: PropTypes.func.isRequired,
   onClientChange: PropTypes.func.isRequired,
   onServiceChange: PropTypes.func.isRequired,
+  onStartTimeChange: PropTypes.func.isRequired,
+  onEndTimeChange: PropTypes.func.isRequired,
   searchClients: PropTypes.func.isRequired,
   searchServices: PropTypes.func.isRequired,
+  saveSession: PropTypes.func.isRequired,
 };
 
 SessionModal.defaultProps = {
@@ -122,6 +141,8 @@ SessionModal.defaultProps = {
   clients: [],
   serviceId: '',
   services: [],
+  startTime: new Date(),
+  endTime: new Date(),
 };
 
 const mapStateToProps = (state) => {
@@ -129,6 +150,8 @@ const mapStateToProps = (state) => {
     open: getSessionModalOpen(state),
     notes: getSessionNotes(state),
     location: getSessionLocation(state),
+    startTime: getSessionStartTime(state),
+    endTime: getSessionEndTime(state),
     clientId: getSessionClientId(state),
     clients: getClientsOrderedByName(state),
     serviceId: getSessionServiceId(state),
@@ -143,8 +166,11 @@ const mapDispatchToProps = (dispatch) => {
     updateSessionServiceId,
     updateSessionLocation,
     updateSessionNotes,
+    updateSessionStartTime,
+    updateSessionEndTime,
     searchClients,
     searchServices,
+    saveSession,
   }, dispatch);
 };
 
@@ -156,8 +182,11 @@ const mergeProps = (stateProps, dispatchProps, props) => ({
   onLocationChange: (evt, location) => dispatchProps.updateSessionLocation(location),
   onClientChange: (evt, clientId) => dispatchProps.updateSessionClientId(clientId),
   onServiceChange: (evt, serviceId) => dispatchProps.updateSessionServiceId(serviceId),
+  onStartTimeChange: (startTime) => dispatchProps.updateSessionStartTime(startTime),
+  onEndTimeChange: (endTime) => dispatchProps.updateSessionEndTime(endTime),
   searchClients: dispatchProps.searchClients,
   searchServices: dispatchProps.searchServices,
+  saveSession: dispatchProps.saveSession,
 });
 
 export default connect(

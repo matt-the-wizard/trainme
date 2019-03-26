@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_20_142339) do
+ActiveRecord::Schema.define(version: 2019_03_26_115434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,13 +39,17 @@ ActiveRecord::Schema.define(version: 2019_02_20_142339) do
     t.bigint "client_id"
     t.bigint "user_id"
     t.bigint "fitness_service_id"
-    t.time "start_time", null: false
-    t.time "end_time", null: false
     t.date "day", null: false
     t.string "location", null: false
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "start_time_hour"
+    t.integer "start_time_minutes"
+    t.string "start_time_meridiem"
+    t.integer "end_time_hour"
+    t.integer "end_time_minutes"
+    t.string "end_time_meridiem"
     t.index ["client_id"], name: "index_fitness_sessions_on_client_id"
     t.index ["fitness_service_id"], name: "index_fitness_sessions_on_fitness_service_id"
     t.index ["user_id"], name: "index_fitness_sessions_on_user_id"

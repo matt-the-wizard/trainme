@@ -83,8 +83,12 @@ class CalendarPage extends Component {
 CalendarPage.propTypes = {
     sessions: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
-        startTime: PropTypes.string.isRequired,
-        endTime: PropTypes.string.isRequired,
+        startTimeHour: PropTypes.number.isRequired,
+        startTimeMinutes: PropTypes.number.isRequired,
+        startTimeMeridiem: PropTypes.string.isRequired,
+        endTimeHour: PropTypes.number.isRequired,
+        endTimeMinutes: PropTypes.number.isRequired,
+        endTimeMeridiem: PropTypes.string.isRequired,
         day: PropTypes.string.isRequired,
         clientName: PropTypes.string.isRequired,
         serviceTitle: PropTypes.string.isRequired,

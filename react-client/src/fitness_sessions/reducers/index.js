@@ -8,7 +8,10 @@ import {
     UPDATE_SESSION_CLIENT,
     UPDATE_SESSION_SERVICE,
     UPDATE_SESSION_NOTES,
-    UPDATE_SESSION_LOCATION, UPDATE_SESSION_START_TIME, UPDATE_SESSION_END_TIME,
+    UPDATE_SESSION_LOCATION,
+    UPDATE_SESSION_START_TIME,
+    UPDATE_SESSION_END_TIME,
+    SAVE_SESSION_SUCCEEDED,
 }
     from '../actions';
 
@@ -22,8 +25,8 @@ export default function(state = {
         clientId: '',
         serviceId: '',
         day: null,
-        startTime: null,
-        endTime: null,
+        startTime: new Date(),
+        endTime: new Date(),
         notes: '',
         location: ''
     },
@@ -48,8 +51,12 @@ export default function(state = {
                         [current.id]: {
                             ...current,
                             clientName: current.client_name,
-                            startTime: current.start_time,
-                            endTime: current.end_time,
+                            startTimeHour: current.start_time_hour,
+                            startTimeMinutes: current.start_time_minutes,
+                            startTimeMeridiem: current.start_time_meridiem,
+                            endTimeHour: current.end_time_hour,
+                            endTimeMinutes: current.end_time_minutes,
+                            endTimeMeridiem: current.end_time_meridiem,
                             serviceTitle: current.service_title,
                         }
                     }
@@ -118,6 +125,27 @@ export default function(state = {
                     ...state.session,
                     endTime: action.payload,
                 },
+            };
+        case SAVE_SESSION_SUCCEEDED:
+            return {
+              ...state,
+                sessions: {
+                    ...state.sessions,
+                    [action.payload.id]: {
+                        ...action.payload,
+                        clientName: action.payload.client_name,
+                        startTimeHour: action.payload.start_time_hour,
+                        startTimeMinutes: action.payload.start_time_minutes,
+                        startTimeMeridiem: action.payload.start_time_meridiem,
+                        endTimeHour: action.payload.end_time_hour,
+                        endTimeMinutes: action.payload.end_time_minutes,
+                        endTimeMeridiem: action.payload.end_time_meridiem,
+                        serviceTitle: action.payload.service_title,
+                    },
+                },
+                session: {},
+                sessionModalOpen: false,
+                errorMessage: ''
             };
         default:
             return state;
