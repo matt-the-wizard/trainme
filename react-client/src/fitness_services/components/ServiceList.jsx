@@ -5,6 +5,9 @@ import List from "@material-ui/core/es/List/List";
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import red from '@material-ui/core/colors/red';
+import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
 	list: {
@@ -30,7 +33,7 @@ const styles = theme => ({
 });
 
 const ServiceList = (props) => {
-	const { classes } = props;
+	const { classes, updateService, deleteService } = props;
 	return (
 		<div>
 			<List className={classes.root}>
@@ -40,6 +43,12 @@ const ServiceList = (props) => {
 				{props.services.map((service) => (
 					<ListItem key={service.id}>
 						<ListItemText primary={service.title} secondary={service.duration + ' minutes'} />
+						<Fab size='small' className={classes.edit} onClick={(evt) => updateService(evt, service)}>
+							<EditIcon />
+						</Fab>
+						<Fab size='small' className={classes.delete} onClick={(evt) => deleteService(evt, service)}>
+							<DeleteIcon />
+						</Fab>
 					</ListItem>
 				))}
 			</List>
@@ -54,6 +63,8 @@ ServiceList.propTypes = {
 		duration: PropTypes.number.isRequired,
 	})),
 	classes: PropTypes.object.isRequired,
+	updateService: PropTypes.func.isRequired,
+	deleteService: PropTypes.func.isRequired,
 };
 
 ServiceList.defaultProps = {

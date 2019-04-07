@@ -3,21 +3,33 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getServicesOrderedByTitle} from '../selectors';
-import {searchServices} from '../actionCreators';
+import {searchServices, openServiceModal, openArchiveModal} from '../actionCreators';
 import ServiceList from '../components/ServiceList';
 import Paper from '@material-ui/core/Paper';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
+import { withStyles } from '@material-ui/core';
+
+const styles = () => ({
+	addFabButton: {
+		position: 'absolute',
+		right: 8,
+		top: 70,
+	},
+});
 
 class ServicesPage extends Component {
 	componentDidMount() {
 		this.props.searchServices();
-  	}
+	}
 
 	render() {
-		const { services } = this.props;
+		const { services, openServiceModal, openArchiveModal, classes } = this.props;
 		return (
 			<div>
 				<Paper>
-					<ServiceList services={services}/>
+					<ServiceList services={services} updateService={openServiceModal} deleteService={openArchiveModal}/>
+					<Fab className={classes.addFabButton} color="secondary" aria-label="Add" onClick={openServiceModal}><AddIcon /></Fab>
 				</Paper>
 			</div>
     )
@@ -31,6 +43,8 @@ ServicesPage.propTypes = {
 		duration: PropTypes.number.isRequired,
 	})),
 	searchServices: PropTypes.func.isRequired,
+	openServiceModal: PropTypes.func.isRequired,
+	openArchiveModal: PropTypes.func.isRequired,
 };
 
 ServicesPage.defaultProps = {
@@ -44,7 +58,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({searchServices}, dispatch);
+  return bindActionCreators({searchServices, openServiceModal, openArchiveModal}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ServicesPage);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(ServicesPage));

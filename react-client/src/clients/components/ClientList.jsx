@@ -36,7 +36,7 @@ const styles = theme => ({
 });
 
 const ClientList = (props) => {
-	const { classes, updateClient, deleteClient, showEdit, showDelete } = props;
+	const { classes, updateClient, deleteClient } = props;
 	return (
 		<div>
 			<List className={classes.root}>
@@ -62,14 +62,13 @@ const ClientList = (props) => {
 									} />
 								</Typography>
 							</React.Fragment>
-						} />
-						{showEdit &&
+						}/>
 						<Fab size='small' className={classes.edit} onClick={(evt) => updateClient(evt, client)}>
 							<EditIcon />
-						</Fab>}
-						{showDelete && <Fab size='small' className={classes.delete} onClick={(evt) => deleteClient(evt, client)}>
+						</Fab>
+						<Fab size='small' className={classes.delete} onClick={(evt) => deleteClient(evt, client)}>
 							<DeleteIcon />
-						</Fab>}
+						</Fab>
 					</ListItem>
 				))}
 			</List>
@@ -94,10 +93,6 @@ ClientList.propTypes = {
 ClientList.defaultProps = {
 	clients: [],
 	classes: {},
-	updateClient: () => {},
-	deleteClient: () => {},
-	showEdit: true,
-	showDelete: true,
 };
 
 export default withStyles(styles)(ClientList);

@@ -11,14 +11,6 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
 
 const styles = () => ({
-	appBar: {
-		top: 'auto',
-		bottom: 0,
-	},
-	toolbar: {
-		alignItems: 'center',
-		justifyContent: 'space-between',
-	},
 	addFabButton: {
 		position: 'absolute',
 		right: 8,

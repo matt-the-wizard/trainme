@@ -25,8 +25,10 @@ import AlarmIcon from '@material-ui/icons/Alarm';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import CalendarPage from "../fitness_sessions/containers/CalendarPage";
 import ClientModal from '../clients/containers/ClientModal';
-import ArchiveModal from '../clients/containers/ArchiveModal';
+import ClientArchiveModal from '../clients/containers/ArchiveModal';
 import SessionModal from '../fitness_sessions/containers/SessionModal';
+import ServiceArchiveModal from '../fitness_services/containers/ArchiveModal';
+import ServiceModal from '../fitness_services/containers/ServiceModal';
 
 const drawerWidth = 200;
 
@@ -178,8 +180,10 @@ class App extends Component {
 							<PrivateRoute path="/sessions" component={CalendarPage}/>
 						</Switch>
 						<ClientModal />
-						<ArchiveModal />
+						<ClientArchiveModal />
 						<SessionModal />
+						<ServiceArchiveModal/>
+						<ServiceModal/>
 					</main>
 				</div>
 			</Router>
