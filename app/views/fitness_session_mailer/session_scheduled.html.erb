@@ -8,12 +8,11 @@
   </head>
 
   <body>
-    <h1>Fitness Session Scheduled</h1>
+    <h1><%= @service.title %> Scheduled On <%= @session.day.strftime("%A %m/%d/%Y") %></h1>
 
-    <p><%= @coach.name %> has scheduled a training session with you for <%= @service.title %> on <%= @session.day %> from
-    <%= @session.start_time_hour %>:<%= @session.start_time_minutes %> <%= @session.start_time_meridiem %> to
-    <%= @session.end_time_hour %>:<%= @session.end_time_minutes %> <%= @session.end_time_meridiem %> at
-      <%= @session.location %></p>
+    <p><%= @coach.name %> has scheduled a <%= @service.title %> session with you on <%= @session.day.strftime("%A %m/%d/%Y") %> from
+    <%= @session.start_time_hour %>:<%= @session.start_time_minutes.to_s.rjust(2, "0") %> <%= @session.start_time_meridiem %> to
+    <%= @session.end_time_hour %>:<%= @session.end_time_minutes.to_s.rjust(2, "0") %> <%= @session.end_time_meridiem %> at <%= @session.location %></p>
 
     <br>
 
