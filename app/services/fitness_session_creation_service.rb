@@ -12,6 +12,7 @@ class FitnessSessionCreationService < BaseService
     begin
       @fitness_session.save!
       if @fitness_session.persisted?
+        FitnessSessionCreationJob.perform_now(@fitness_session.id)
         @response.payload = @fitness_session
       else
         @response.errors << 'Failed to create fitness session'

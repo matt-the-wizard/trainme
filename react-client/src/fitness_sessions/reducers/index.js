@@ -143,7 +143,10 @@ export default function(state = {
                         serviceTitle: action.payload.service_title,
                     },
                 },
-                session: {},
+                session: {
+                    startTime: new Date(1970, 1, 1, 9, 0, 0, 0),
+                    endTime: new Date(1970, 1, 1, 10, 0, 0, 0),
+                },
                 sessionModalOpen: false,
                 errorMessage: ''
             };

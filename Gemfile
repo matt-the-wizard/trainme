@@ -9,5 +9,9 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 
+group :development do
+  gem 'letter_opener_web', '~> 1.0'
+end
+
 group :development, :test do
 end
