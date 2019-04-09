@@ -4,24 +4,26 @@
     <title>Fitness Session Scheduled</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      body { background: #222; padding-top: 40px; }
-      h1 { color: #ffffff; background: #fe921f; font-family: 'proxima-nova-soft',Helvetica Neue,Helvetica,Arial, sans-serif; font-size: 24px; font-weight: 300; margin: 20px; padding: 10px; }
-      p { color: #ffffff; font-family: 'Lucida Sans', Arial, sans-serif; font-size: 16px; line-height: 26px; padding-left: 40px; }
-      a { color: #fe921f; text-decoration: underline; }
-      a:hover { color: #ffffff }
+      .content { background: #222 !important; padding-top: 40px; padding-bottom: 20px; }
+      .content h1 { color: #ffffff; background: #fe921f; font-family: 'proxima-nova-soft',Helvetica Neue,Helvetica,Arial, sans-serif; font-size: 24px; font-weight: 300; margin: 20px; padding: 10px; }
+      .content p { color: #ffffff; font-family: 'Lucida Sans', Arial, sans-serif; font-size: 16px; line-height: 26px; padding-left: 40px; }
+      .content a { color: #fe921f; text-decoration: underline; }
+      .content a:hover { color: #ffffff }
     </style>
   </head>
 
   <body>
-    <h1><%= @service.title %> Scheduled On <%= @session.day.strftime("%A %m/%d/%Y") %></h1>
+    <div class="content">
+      <h1><%= @service.title %> Scheduled On <%= @session.day.strftime("%A %m/%d/%Y") %></h1>
 
-    <p><%= @coach.name %> has scheduled a <%= @service.title %> session with you.</p>
+      <p><%= @coach.name %> has scheduled a <%= @service.title %> session with you.</p>
 
-    <p>You session starts on <%= @session.day.strftime("%A %m/%d/%Y") %> from <%= @session.start_time_hour %>:<%= @session.start_time_minutes.to_s.rjust(2, "0") %> <%= @session.start_time_meridiem %> to
-      <%= @session.end_time_hour %>:<%= @session.end_time_minutes.to_s.rjust(2, "0") %> <%= @session.end_time_meridiem %> and will be located at <%= @session.location %></p>
+      <p>You session starts on <%= @session.day.strftime("%A %m/%d/%Y") %> from <%= @session.start_time_hour %>:<%= @session.start_time_minutes.to_s.rjust(2, "0") %> <%= @session.start_time_meridiem %> to
+        <%= @session.end_time_hour %>:<%= @session.end_time_minutes.to_s.rjust(2, "0") %> <%= @session.end_time_meridiem %> and will be located at <%= @session.location %></p>
 
-    <% if @session.notes.present? %>
-      <p><%= @session.notes %></p>
-    <% end %>
+      <% if @session.notes.present? %>
+        <p><%= @session.notes %></p>
+      <% end %>
+    </div>
   </body>
 </html>

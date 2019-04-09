@@ -8,7 +8,8 @@ class FitnessSessionMailer < ActionMailer::Base
 
     to = @client.email
     from = @coach.email
+    cc = @coach.email
     subject = "#{@service.title} Scheduled On #{@session.day.strftime("%A %m/%d/%Y")}"
-    mail(to: to, from: from, subject: subject)
+    mail(to: to, from: from, cc: cc, subject: subject)
   end
 end
