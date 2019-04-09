@@ -4,9 +4,9 @@
     <title>Fitness Session Scheduled</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      body { background: #222; padding-top: 50px; }
-      h1 { color: #ffffff; background: #fe921f; font-family: 'proxima-nova-soft',Helvetica Neue,Helvetica,Arial, sans-serif; font-size: 24px; font-weight: 300; margin: 20px; padding: 20px; }
-      p { color: #ffffff; font-family: 'Lucida Sans', Arial, sans-serif; font-size: 16px; line-height: 26px; padding-left: 100px; }
+      body { background: #222; padding-top: 40px; }
+      h1 { color: #ffffff; background: #fe921f; font-family: 'proxima-nova-soft',Helvetica Neue,Helvetica,Arial, sans-serif; font-size: 24px; font-weight: 300; margin: 20px; padding: 10px; }
+      p { color: #ffffff; font-family: 'Lucida Sans', Arial, sans-serif; font-size: 16px; line-height: 26px; padding-left: 40px; }
       a { color: #fe921f; text-decoration: underline; }
       a:hover { color: #ffffff }
     </style>
@@ -21,7 +21,6 @@
       <%= @session.end_time_hour %>:<%= @session.end_time_minutes.to_s.rjust(2, "0") %> <%= @session.end_time_meridiem %> and will be located at <%= @session.location %></p>
 
     <% if @session.notes.present? %>
-      <p>Notes:</p>
       <p><%= @session.notes %></p>
     <% end %>
   </body>
