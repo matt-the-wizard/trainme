@@ -12,6 +12,7 @@ class FitnessSessionCreationService < BaseService
     begin
       @fitness_session.save!
       if @fitness_session.persisted?
+        # TODO: Make this async once I get sidekiq configured with perform later
         FitnessSessionCreationJob.perform_now(@fitness_session.id)
         @response.payload = @fitness_session
       else
