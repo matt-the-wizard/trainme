@@ -2,9 +2,6 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   namespace :coach_api do
-    get 'fitness_sessions/index'
-  end
-  namespace :coach_api do
     post '/login' => 'sessions#create'
     delete '/logout' => 'sessions#destroy'
 

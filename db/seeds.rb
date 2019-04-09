@@ -40,7 +40,7 @@ FitnessServiceCreationService.new(
 
 FitnessSessionCreationService.new(
   coach: coach,
-  client: Client.first,
+  client: Client.find_by_name("Matthew Berger"),
   service: FitnessService.first,
   location: 'Rise Athletic Club',
   day: Time.zone.now.to_date,
