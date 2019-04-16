@@ -29,7 +29,7 @@ const ClientForm = (props) => {
                 <TextField label="Email" placeholder="client@gmail.com" type="text" value={email} fullWidth
                            onChange={(evt) => onEmailChange(evt, evt.target.value)}/>
 
-                <TextField label="Phone" placeholder="***-***-****" type="text" value={phone} fullWidth
+                <TextField label="Phone" placeholder="1**********" type="text" value={phone} fullWidth
                            onChange={(evt) => onPhoneChange(evt, evt.target.value)}/>
             </div>
         </Fragment>
@@ -48,7 +48,7 @@ ClientForm.propTypes = {
 ClientForm.defaultProps = {
     name: '',
     email: '',
-    phone: ''
+    phone: '1'
 };
 
 export default withStyles(styles)(ClientForm);

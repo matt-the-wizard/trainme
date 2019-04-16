@@ -1,4 +1,5 @@
 require_relative '../lib/util'
+require 'twilio-ruby'
 
 class ClientUpdateService < BaseService
   def initialize(data)
@@ -10,6 +11,8 @@ class ClientUpdateService < BaseService
     return @response if @response.errors?
 
     begin
+      @twilio_lookup_client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_ID'], ENV['TWILIO_AUTH_TOKEN'])
+      @phone = @twilio_lookup_client.lookups.phone_numbers(@phone).fetch.phone_number
       @client.update_attributes!(name: @name, phone: @phone, email: @email)
       @response.payload = @client
     rescue StandardError => exception
@@ -38,10 +41,6 @@ class ClientUpdateService < BaseService
 
     unless @email.is_a?(String) && Util::EMAIL_FORMAT.match(@email)
       @response.errors << 'Invalid type for email'
-    end
-
-    unless @phone.is_a?(String) && Util::PHONE_FORMAT.match(@phone)
-      @response.errors << 'Invalid type for phone'
     end
   end
 end

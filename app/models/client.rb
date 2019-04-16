@@ -7,7 +7,6 @@ class Client < ApplicationRecord
   validates :archived, inclusion: { in: [true, false] }
 
   validates_format_of :email, with: Util::EMAIL_FORMAT
-  validates_format_of :phone, with: Util::PHONE_FORMAT
 
   belongs_to :user
 
