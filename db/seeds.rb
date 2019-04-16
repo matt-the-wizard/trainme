@@ -3,7 +3,7 @@
 coach = User.create!(username: 'james-clay',
                      password: 'supersecret',
                      password_confirmation: 'supersecret',
-                     email: 'jamesclayfitness@gmail.com',
+                     email: 'Coachingwithjclay@gmail.com',
                      name: 'James Clay')
 
 ClientCreationService.new(
